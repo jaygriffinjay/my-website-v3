@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { css, keyframes } from '@emotion/react';
 import { useRef, useState } from 'react';
+import { Sekuya } from 'next/font/google';
+
+const sekuya = Sekuya({ subsets: ['latin'], weight: ['400'] });
 
 const particleFloat = keyframes({
   '0%': {
@@ -19,19 +22,8 @@ const navBarStyles = css({
   display: 'flex',
   alignItems: 'center',
   gap: '1rem',
-  padding: '1.5rem 2rem',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-});
-
-const logoContainerStyles = css({
-  position: 'relative',
-  overflow: 'visible',
-});
-
-const logoStyles = css({
-  width: '48px',
-  height: '48px',
-  display: 'block',
+  padding: '1.5rem 2rem 1.5rem 1rem',
+  zIndex: 1000,
 });
 
 const titleContainerStyles = css({
@@ -39,7 +31,7 @@ const titleContainerStyles = css({
   overflow: 'visible',
   
   '&:hover .title-bg': {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
 });
 
@@ -50,11 +42,11 @@ const titleBgStyles = css({
   backgroundColor: 'transparent',
   transition: 'background-color 0.3s ease',
   zIndex: 0,
-  height: '42px',
+  height: '56px',
 });
 
 const titleStyles = css({
-  fontSize: '1.5rem',
+  fontSize: '2.5rem',
   fontWeight: 700,
   letterSpacing: '-0.02em',
   color: '#fff',
@@ -66,6 +58,7 @@ const titleStyles = css({
   borderRadius: '999px',
   zIndex: 1,
   lineHeight: 1.2,
+  fontFamily: sekuya.style.fontFamily,
   '&:hover': {
     background: 'linear-gradient(135deg, #00d4ff 0%, #ff00ff 100%)',
     WebkitBackgroundClip: 'text',
@@ -86,9 +79,7 @@ const particleStyles = css({
 
 export default function NavBar() {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; tx: number; ty: number }>>([]);
-  const [logoParticles, setLogoParticles] = useState<Array<{ id: number; x: number; y: number; tx: number; ty: number }>>([]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const logoIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const particleIdRef = useRef(0);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -126,64 +117,8 @@ export default function NavBar() {
     }
   };
 
-  const handleLogoMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    
-    logoIntervalRef.current = setInterval(() => {
-      const x = Math.random() * rect.width;
-      const y = Math.random() * rect.height;
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 40;
-      const tx = Math.cos(angle) * distance;
-      const ty = Math.sin(angle) * distance;
-
-      const particle = {
-        id: particleIdRef.current++,
-        x,
-        y,
-        tx,
-        ty,
-      };
-
-      setLogoParticles(prev => [...prev, particle]);
-
-      // Remove particle after animation
-      setTimeout(() => {
-        setLogoParticles(prev => prev.filter(p => p.id !== particle.id));
-      }, 1500);
-    }, 150);
-  };
-
-  const handleLogoMouseLeave = () => {
-    if (logoIntervalRef.current) {
-      clearInterval(logoIntervalRef.current);
-      logoIntervalRef.current = null;
-    }
-  };
-
   return (
     <nav css={navBarStyles}>
-      <div css={logoContainerStyles}>
-        <Link
-          href="/"
-          onMouseEnter={handleLogoMouseEnter}
-          onMouseLeave={handleLogoMouseLeave}
-        >
-          <img src="/favicon.svg" alt="JG Logo" css={logoStyles} />
-        </Link>
-        {logoParticles.map(particle => (
-          <div
-            key={particle.id}
-            css={particleStyles}
-            style={{
-              left: particle.x,
-              top: particle.y,
-              '--tx': `${particle.tx}px`,
-              '--ty': `${particle.ty}px`,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
       <div css={titleContainerStyles}>
         <div className="title-bg" css={titleBgStyles} />
         <Link

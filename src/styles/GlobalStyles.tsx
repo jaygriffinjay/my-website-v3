@@ -22,7 +22,7 @@ export function GlobalStyles() {
           fontSize: theme.fontSizes.base,
           lineHeight: 1.5,
           color: theme.colors.text,
-          backgroundColor: theme.colors.background,
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           WebkitFontSmoothing: 'antialiased',
           MozOsxFontSmoothing: 'grayscale',
         },
