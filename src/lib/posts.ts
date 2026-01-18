@@ -22,11 +22,41 @@ export async function getAllPosts(): Promise<Post[]> {
       })
   );
   
-  return posts;
+  // Filter to only return actual posts (not docs)
+  return posts.filter((p) => !p.metadata.type || p.metadata.type === 'post');
+}
+
+export async function getAllDocs(): Promise<Post[]> {
+  const postsDirectory = path.join(process.cwd(), 'src/posts');
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  const docs = await Promise.all(
+    filenames
+      .filter((filename) => filename.endsWith('.tsx'))
+      .map(async (filename) => {
+        // Dynamically import the file to get its metadata
+        const filePath = path.join(postsDirectory, filename);
+        const module = await import(`@/posts/${filename.replace('.tsx', '')}`);
+        
+        return {
+          filename: filename.replace('.tsx', ''),
+          metadata: module.metadata as PostMeta,
+        };
+      })
+  );
+  
+  // Filter to only return docs (including doc:commit, doc:* variants)
+  return docs.filter((d) => d.metadata.type?.startsWith('doc'));
 }
 
 export async function getPostBySlug(slug: string): Promise<string | null> {
   const posts = await getAllPosts();
   const post = posts.find((p) => p.metadata.slug === slug);
   return post ? post.filename : null;
+}
+
+export async function getDocBySlug(slug: string): Promise<string | null> {
+  const docs = await getAllDocs();
+  const doc = docs.find((d) => d.metadata.slug === slug);
+  return doc ? doc.filename : null;
 }

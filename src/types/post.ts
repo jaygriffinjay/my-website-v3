@@ -3,12 +3,15 @@ export interface PostMeta {
   slug: string;
   date: string; // ISO 8601
   description: string;
+  type?: 'post' | 'doc' | 'doc:commit'; // Default is 'post'
   
+  author?: string;
+  feature?: string;
   projectId?: string;
   topics?: string[];
   
-  relatedPosts?: string[];
   sourceUrl?: string;
+  commitHash?: string; // For doc:commit type - links to GitHub commit
   
   tags?: string[];
   draft?: boolean;

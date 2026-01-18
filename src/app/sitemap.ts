@@ -1,7 +1,8 @@
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, getAllDocs } from '@/lib/posts';
 
 export default async function sitemap() {
   const posts = await getAllPosts();
+  const docs = await getAllDocs();
   
   const baseUrl = 'https://jaygriff.com';
   
@@ -11,11 +12,18 @@ export default async function sitemap() {
     lastModified: post.metadata.updated ?? post.metadata.date,
   }));
 
+  // Generate URLs for all docs
+  const docUrls = docs.map((doc) => ({
+    url: `${baseUrl}/docs/${doc.metadata.slug}`,
+    lastModified: doc.metadata.updated ?? doc.metadata.date,
+  }));
+
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
     },
     ...postUrls,
+    ...docUrls,
   ];
 }

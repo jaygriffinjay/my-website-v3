@@ -7,6 +7,8 @@ export const metadata: PostMeta = {
   title: 'Why My Blog Posts Are Programs, Not Documents',
   slug: 'programs-not-documents',
   date: '2026-01-13T21:40:00Z',
+  author: 'Jay Griffin',
+  projectId: 'my-website-v3',
   description:
     'Exploring why my blog posts are written as executable TSX programs instead of traditional markdown files, and the tradeoffs that come with this approach.',
   topics: ['React', 'TypeScript', 'Web Development', 'Content Strategy'],
@@ -17,7 +19,6 @@ const ProgramsNotDocumentsPost = () => {
   return (
     <article>
       <Heading level={1}>{metadata.title}</Heading>
-      <Paragraph>{formatPostDate(metadata.date)}</Paragraph>
 
       <Heading level={2}>Markdown Sounds Really Good</Heading>
       <Paragraph>

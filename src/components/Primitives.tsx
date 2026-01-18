@@ -312,6 +312,8 @@ export const Container = styled.div<{ size?: 'sm' | 'md' | 'lg' | 'xl' | 'full' 
   max-width: ${props => containerSizes[props.size || 'lg']};
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4rem;
+  margin-bottom: 24rem;
   padding: 0 ${props => props.theme.spacing.lg};
 `;
 

@@ -12,15 +12,15 @@ export default function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const [PostComponent, setPostComponent] = useState<any>(null);
+  const [DocComponent, setDocComponent] = useState<any>(null);
   const [metadata, setMetadata] = useState<PostMeta | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPost = async () => {
+    const loadDoc = async () => {
       try {
         // Fetch the filename for this slug from an API route
-        const response = await fetch(`/api/posts/${slug}`);
+        const response = await fetch(`/api/docs/${slug}`);
         if (!response.ok) {
           setLoading(false);
           return;
@@ -28,24 +28,24 @@ export default function Page({
         
         const { filename } = await response.json();
         
-        // Dynamically import the post using the filename
-        const postModule = await import(`@/posts/${filename}`);
-        setPostComponent(() => postModule.default);
-        setMetadata(postModule.metadata);
+        // Dynamically import the doc using the filename
+        const docModule = await import(`@/posts/${filename}`);
+        setDocComponent(() => docModule.default);
+        setMetadata(docModule.metadata);
         setLoading(false);
       } catch (error) {
         setLoading(false);
       }
     };
 
-    loadPost();
+    loadDoc();
   }, [slug]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!PostComponent || !metadata) {
+  if (!DocComponent || !metadata) {
     notFound();
   }
 
@@ -53,7 +53,7 @@ export default function Page({
     <Container size="sm">
       <article>
         <ContentHeader metadata={metadata} />
-        <PostComponent />
+        <DocComponent />
       </article>
     </Container>
   );

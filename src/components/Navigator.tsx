@@ -129,7 +129,6 @@ export default function Navigator({ routes, onClose }: NavigatorProps) {
               onClick={onClose}
             >
               <div css={routeTitleStyles}>{route.title}</div>
-              <div css={routePathStyles}>{route.path}</div>
               {route.description && (
                 <div css={routeDescriptionStyles}>{route.description}</div>
               )}

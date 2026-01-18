@@ -6,6 +6,10 @@ export const metadata: PostMeta = {
   title: 'Building the Navigator: A Route Search Tool',
   slug: 'navigator-feature',
   date: '2026-01-17T20:00:00Z',
+  type: 'doc',
+  author: 'Claude Sonnet 4.5',
+  feature: 'Navigator',
+  projectId: 'my-website-v3',
   description:
     'A complete walkthrough of the Navigator feature - a popover search tool for quickly finding and navigating to any route in the application.',
   topics: ['dev-docs', 'Features'],

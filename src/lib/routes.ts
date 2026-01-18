@@ -1,6 +1,6 @@
 // Server-side utility to build a cached index of all routes
 import sitemap from '@/app/sitemap';
-import { getAllPosts } from './posts';
+import { getAllPosts, getAllDocs } from './posts';
 
 export interface RouteEntry {
   path: string;
@@ -12,6 +12,7 @@ export interface RouteEntry {
 export async function getAllRoutes(): Promise<RouteEntry[]> {
   const sitemapEntries = await sitemap();
   const posts = await getAllPosts();
+  const docs = await getAllDocs();
   
   const routes: RouteEntry[] = sitemapEntries.map((entry) => {
     const url = new URL(entry.url);
@@ -31,6 +32,25 @@ export async function getAllRoutes(): Promise<RouteEntry[]> {
             ...(post.metadata.topics || []),
             ...(post.metadata.tags || []),
             post.metadata.slug,
+          ],
+        };
+      }
+    }
+    
+    // Find matching doc data for doc routes
+    if (path.startsWith('/docs/')) {
+      const slug = path.replace('/docs/', '');
+      const doc = docs.find(d => d.metadata.slug === slug);
+      
+      if (doc) {
+        return {
+          path,
+          title: doc.metadata.title,
+          description: doc.metadata.description,
+          keywords: [
+            ...(doc.metadata.topics || []),
+            ...(doc.metadata.tags || []),
+            doc.metadata.slug,
           ],
         };
       }
