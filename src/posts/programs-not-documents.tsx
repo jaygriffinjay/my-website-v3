@@ -7,11 +7,11 @@ export const metadata: PostMeta = {
   title: 'Why My Blog Posts Are Programs, Not Documents',
   slug: 'programs-not-documents',
   date: '2026-01-13T21:40:00Z',
-  author: ['Claude', 'Jay Griffin'],
+  author: ['Claude Sonnet 4.5', 'Jay Griffin'],
   authorshipNote: 'AI-synthesized from my rants about markdown',
   projectId: 'my-website-v3',
   description:
-    'Exploring why my blog posts are written as executable TSX programs instead of traditional markdown files, and the tradeoffs that come with this approach.',
+    'Exploring why my blog posts are written as code instead of simple markdown files, and the tradeoffs that come with this approach.',
   topics: ['React', 'TypeScript', 'Web Development', 'Content Strategy'],
   tags: ['react', 'tsx', 'markdown', 'cms', 'blogging'],
 };

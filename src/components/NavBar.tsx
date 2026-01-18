@@ -23,7 +23,7 @@ const particleFloat = keyframes({
 const navBarStyles = css({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   gap: '1rem',
   padding: '1.5rem 2rem 1.5rem 1rem',
   zIndex: 1000,
@@ -32,20 +32,6 @@ const navBarStyles = css({
 const titleContainerStyles = css({
   position: 'relative',
   overflow: 'visible',
-  
-  '&:hover .title-bg': {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  },
-});
-
-const titleBgStyles = css({
-  position: 'absolute',
-  inset: 0,
-  borderRadius: '999px',
-  backgroundColor: 'transparent',
-  transition: 'background-color 0.3s ease',
-  zIndex: 0,
-  height: '56px',
 });
 
 const titleStyles = css({
@@ -62,8 +48,9 @@ const titleStyles = css({
   zIndex: 1,
   lineHeight: 1.2,
   fontFamily: sekuya.style.fontFamily,
+  whiteSpace: 'nowrap',
   '&:hover': {
-    background: 'linear-gradient(135deg, #00d4ff 0%, #ff00ff 100%)',
+    background: 'linear-gradient(135deg, #00d4ff 0%, #1e3a8a 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
@@ -176,7 +163,6 @@ export default function NavBar({ routes }: NavBarProps) {
   return (
     <nav css={navBarStyles}>
       <div css={titleContainerStyles}>
-        <div className="title-bg" css={titleBgStyles} />
         <Link
           href="/"
           css={titleStyles}

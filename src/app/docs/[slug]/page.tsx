@@ -52,7 +52,7 @@ export default function Page({
   }, [slug]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   if (!DocComponent || !metadata) {
