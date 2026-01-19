@@ -4,7 +4,7 @@ import path from 'path';
 import type { PostMeta, Post } from '@/types/post';
 
 export async function getAllPosts(): Promise<Post[]> {
-  const postsDirectory = path.join(process.cwd(), 'src/pages');
+  const postsDirectory = path.join(process.cwd(), 'content/tsx');
   const filenames = fs.readdirSync(postsDirectory);
   
   const posts = await Promise.all(
@@ -13,7 +13,7 @@ export async function getAllPosts(): Promise<Post[]> {
       .map(async (filename) => {
         // Dynamically import the post file to get its metadata
         const filePath = path.join(postsDirectory, filename);
-        const module = await import(`@/pages/${filename.replace('.tsx', '')}`);
+        const module = await import(`@content/tsx/${filename.replace('.tsx', '')}`);
         
         return {
           filename: filename.replace('.tsx', ''),
@@ -27,7 +27,7 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getAllDocs(): Promise<Post[]> {
-  const postsDirectory = path.join(process.cwd(), 'src/pages');
+  const postsDirectory = path.join(process.cwd(), 'content/tsx');
   const filenames = fs.readdirSync(postsDirectory);
   
   const docs = await Promise.all(
@@ -36,7 +36,7 @@ export async function getAllDocs(): Promise<Post[]> {
       .map(async (filename) => {
         // Dynamically import the file to get its metadata
         const filePath = path.join(postsDirectory, filename);
-        const module = await import(`@/pages/${filename.replace('.tsx', '')}`);
+        const module = await import(`@content/tsx/${filename.replace('.tsx', '')}`);
         
         return {
           filename: filename.replace('.tsx', ''),

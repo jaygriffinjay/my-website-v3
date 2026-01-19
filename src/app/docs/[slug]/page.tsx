@@ -29,7 +29,7 @@ export default function Page({
         const { filename } = await response.json();
         
         // Dynamically import the doc using the filename
-        const docModule = await import(`@/pages/${filename}`);
+        const docModule = await import(`@content/tsx/${filename}`);
         
         // Check if this is a commit doc and redirect to /docs/commits/{slug}
         if (docModule.metadata.type === 'doc:commit') {

@@ -29,7 +29,7 @@ export default function Page({
         const { filename } = await response.json();
         
         // Dynamically import the doc using the filename
-        const docModule = await import(`@/posts/${filename}`);
+        const docModule = await import(`@content/tsx/${filename}`);
         setDocComponent(() => docModule.default);
         setMetadata(docModule.metadata);
         setLoading(false);

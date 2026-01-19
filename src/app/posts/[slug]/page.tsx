@@ -29,7 +29,7 @@ export default function Page({
         const { filename } = await response.json();
         
         // Dynamically import the post using the filename
-        const postModule = await import(`@/pages/${filename}`);
+        const postModule = await import(`@content/tsx/${filename}`);
         setPostComponent(() => postModule.default);
         setMetadata(postModule.metadata);
         setLoading(false);
