@@ -17,7 +17,12 @@ export function GlobalStyles() {
         },
         
         // Root styles
-        'html, body': {
+        html: {
+          height: '100%',
+          background: '#1a1a24',
+        },
+        body: {
+          height: '100%',
           fontFamily: theme.fonts.body,
           fontSize: theme.fontSizes.base,
           lineHeight: 1.5,
