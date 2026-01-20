@@ -21,6 +21,17 @@ const navigatorStyles = css({
   flexDirection: 'column',
   gap: '0.75rem',
   zIndex: 9999,
+  '@media (max-width: 768px)': {
+    position: 'fixed',
+    top: '80px',
+    left: '1rem',
+    right: '1rem',
+    width: 'auto',
+    maxWidth: '400px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    transform: 'none',
+  },
 });
 
 const searchInputStyles = css({
