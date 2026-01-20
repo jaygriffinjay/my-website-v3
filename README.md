@@ -1,10 +1,10 @@
 # jaygriff.com
 
-This is the source code for my website where I publish all my software development work and some personal stuff too!
+This is my website where I publish all my software development work and some personal stuff too!
 
-This website is written entirely in TypeScript using React, Next.js, and Emotion. 
+Written entirely in TypeScript using React, Next.js, and Emotion. 
 
-To learn more about this site I would browse the meta docs on the site itself!
+To learn more about this project I would browse the meta docs on the site itself at /docs.
 
 ## Getting Started
 Clone this repo and then:
