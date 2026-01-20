@@ -27,6 +27,10 @@ const navBarStyles = css({
   gap: '1rem',
   padding: '1.5rem 2rem 1.5rem 1rem',
   zIndex: 1000,
+  '@media (max-width: 768px)': {
+    gap: '0.5rem',
+    padding: '1rem 1rem 1rem 0.75rem',
+  },
 });
 
 const titleContainerStyles = css({
@@ -54,6 +58,10 @@ const titleStyles = css({
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
+  },
+  '@media (max-width: 768px)': {
+    fontSize: 'clamp(1.25rem, 6vw, 2.5rem)',
+    padding: '0.25rem clamp(0.5rem, 3vw, 1.5rem)',
   },
 });
 
@@ -86,6 +94,11 @@ const navigatorIconStyles = css({
   '&:hover': {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     color: '#00d4ff',
+  },
+  '@media (max-width: 768px)': {
+    width: '36px',
+    height: '36px',
+    fontSize: '1.125rem',
   },
 });
 
