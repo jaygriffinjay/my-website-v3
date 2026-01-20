@@ -18,11 +18,9 @@ export function GlobalStyles() {
         
         // Root styles
         html: {
-          height: '100%',
           background: '#1a1a24',
         },
         body: {
-          height: '100%',
           fontFamily: theme.fonts.body,
           fontSize: theme.fontSizes.base,
           lineHeight: 1.5,
@@ -30,6 +28,8 @@ export function GlobalStyles() {
           background: '#1a1a24',
           WebkitFontSmoothing: 'antialiased',
           MozOsxFontSmoothing: 'grayscale',
+          minHeight: '100vh',   
+          paddingBottom: '1px', // Safari margin collapse fix - see /docs/safari-margin-hack
         },
       }}
     />

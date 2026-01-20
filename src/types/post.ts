@@ -18,6 +18,8 @@ export interface PostMeta {
   draft?: boolean;
   image?: string;
   updated?: string;
+  
+  relatedPosts?: string[]; // Array of slugs for related posts
 }
 
 export interface Post {
