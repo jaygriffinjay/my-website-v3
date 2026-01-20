@@ -33,6 +33,7 @@ export function HomePage({ allContent }: HomePageProps) {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     });
     if (!acc[date]) {
       acc[date] = [];
