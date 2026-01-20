@@ -164,12 +164,18 @@ export default function NavBar({ routes }: NavBarProps) {
       }
     };
 
+    const handleScroll = () => {
+      setIsNavigatorOpen(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleEscape);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [isNavigatorOpen]);
 
