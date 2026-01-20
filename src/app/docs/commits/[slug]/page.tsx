@@ -1,59 +1,35 @@
-"use client";
-
 import { notFound } from "next/navigation";
-import { use, useState, useEffect } from "react";
 import { Container } from "@/components/Primitives";
 import { ContentHeader } from "@/components/ContentHeader";
-import type { PostMeta } from "@/types/post";
+import { ContentWrapper } from "@/components/ContentWrapper";
+import { loadContentBySlug, getAllDocSlugs } from "@/lib/content-loader";
 
-export default function Page({
+// Pre-render all commit docs at build time
+export async function generateStaticParams() {
+  return await getAllDocSlugs();
+}
+
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = use(params);
-  const [DocComponent, setDocComponent] = useState<any>(null);
-  const [metadata, setMetadata] = useState<PostMeta | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { slug } = await params;
+  const content = await loadContentBySlug(slug, 'doc');
 
-  useEffect(() => {
-    const loadDoc = async () => {
-      try {
-        // Fetch the filename for this slug from an API route
-        const response = await fetch(`/api/docs/${slug}`);
-        if (!response.ok) {
-          setLoading(false);
-          return;
-        }
-        
-        const { filename } = await response.json();
-        
-        // Dynamically import the doc using the filename
-        const docModule = await import(`@content/tsx/${filename}`);
-        setDocComponent(() => docModule.default);
-        setMetadata(docModule.metadata);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
-
-    loadDoc();
-  }, [slug]);
-
-  if (loading) {
-    return null;
-  }
-
-  if (!DocComponent || !metadata) {
+  if (!content) {
     notFound();
   }
+
+  const { Component: DocComponent, metadata } = content;
 
   return (
     <Container size="sm">
       <article>
         <ContentHeader metadata={metadata} />
-        <DocComponent />
+        <ContentWrapper>
+          <DocComponent />
+        </ContentWrapper>
       </article>
     </Container>
   );

@@ -1,69 +1,40 @@
-"use client";
-
 import { notFound, redirect } from "next/navigation";
-import { use, useState, useEffect } from "react";
 import { Container } from "@/components/Primitives";
 import { ContentHeader } from "@/components/ContentHeader";
-import type { PostMeta } from "@/types/post";
+import { ContentWrapper } from "@/components/ContentWrapper";
+import { loadContentBySlug, getAllDocSlugs } from "@/lib/content-loader";
 
-export default function Page({
+// Pre-render all docs at build time
+export async function generateStaticParams() {
+  return await getAllDocSlugs();
+}
+
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = use(params);
-  const [DocComponent, setDocComponent] = useState<any>(null);
-  const [metadata, setMetadata] = useState<PostMeta | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { slug } = await params;
+  const content = await loadContentBySlug(slug, 'doc');
 
-  useEffect(() => {
-    const loadDoc = async () => {
-      try {
-        // Fetch the filename for this slug from an API route
-        const response = await fetch(`/api/docs/${slug}`);
-        if (!response.ok) {
-          setLoading(false);
-          return;
-        }
-        
-        const { filename } = await response.json();
-        
-        // Dynamically import the doc using the filename
-        const docModule = await import(`@content/tsx/${filename}`);
-        
-        // Check if this is a commit doc and redirect to /docs/commits/{slug}
-        if (docModule.metadata.type === 'doc:commit') {
-          const currentPath = window.location.pathname;
-          if (!currentPath.startsWith('/docs/commits/')) {
-            window.location.href = `/docs/commits/${docModule.metadata.slug}`;
-            return;
-          }
-        }
-        
-        setDocComponent(() => docModule.default);
-        setMetadata(docModule.metadata);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
-
-    loadDoc();
-  }, [slug]);
-
-  if (loading) {
-    return null;
+  if (!content) {
+    notFound();
   }
 
-  if (!DocComponent || !metadata) {
-    notFound();
+  const { Component: DocComponent, metadata } = content;
+
+  // Redirect commit docs to /docs/commits/{slug}
+  if (metadata.type === 'doc:commit') {
+    redirect(`/docs/commits/${slug}`);
   }
 
   return (
     <Container size="sm">
       <article>
         <ContentHeader metadata={metadata} />
-        <DocComponent />
+        <ContentWrapper>
+          <DocComponent />
+        </ContentWrapper>
       </article>
     </Container>
   );

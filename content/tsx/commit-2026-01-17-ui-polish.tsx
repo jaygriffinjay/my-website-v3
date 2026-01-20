@@ -7,7 +7,7 @@ export const metadata: PostMeta = {
   date: '2026-01-17T22:00:00Z',
   author: 'Claude Sonnet 4.5',
   type: 'doc:commit',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   commitHash: 'b63a18974c7906ec296394b62c8868ae7caacff3',
   description: 'Added multi-author support with tooltips for authorship context, refined inline code styling with electric blue accent, and various UI polish updates',
   tags: ['ui', 'styling', 'metadata', 'tooltip'],

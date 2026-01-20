@@ -1,3 +1,5 @@
+"use client";
+
 import { css } from '@emotion/react';
 import type { PostMeta } from '@/types/post';
 import { formatPostDate } from '@/lib/date';

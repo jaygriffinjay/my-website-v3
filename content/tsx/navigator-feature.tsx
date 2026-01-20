@@ -9,7 +9,7 @@ export const metadata: PostMeta = {
   type: 'doc',
   author: 'Claude Sonnet 4.5',
   feature: 'Navigator',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   description:
     'A complete walkthrough of the Navigator feature - a popover search tool for quickly finding and navigating to any route in the application.',
   topics: ['dev-docs', 'Features'],

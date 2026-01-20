@@ -9,7 +9,7 @@ export const metadata: PostMeta = {
   date: '2026-01-13T21:40:00Z',
   author: ['Claude Sonnet 4.5', 'Jay Griffin'],
   authorshipNote: 'AI-synthesized from my rants about markdown',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   description:
     'Exploring why my blog posts are written as code instead of simple markdown files, and the tradeoffs that come with this approach.',
   topics: ['React', 'TypeScript', 'Web Development', 'Content Strategy'],

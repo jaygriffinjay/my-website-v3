@@ -9,7 +9,7 @@ export const metadata: PostMeta = {
   type: 'doc:commit',
   author: 'Claude Sonnet 4.5',
   feature: 'Navigator',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   commitHash: '9cbde96ec935dd5c7e2d6cf07ba8756d90d96d2e',
   description:
     'Complete refactor of content infrastructure: separated docs from posts with type-based routing, added comprehensive metadata system, improved Navigator UX, and created ContentHeader component.',
@@ -109,7 +109,7 @@ const CommitContentSystemRefactor = () => {
   // ...existing fields
   author?: string;      // "Jay Griffin", "Claude Sonnet 4.5"
   feature?: string;     // "Navigator", "Theme Editor"
-  projectId?: string;   // "my-website-v3", "locus"
+  projectId?: string;   // "jaygriff", "locus"
   type?: 'post' | 'doc';
 }`}</CodeBlock>
 

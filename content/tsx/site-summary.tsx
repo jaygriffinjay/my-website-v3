@@ -10,7 +10,7 @@ export const metadata: PostMeta = {
   type: 'doc',
   author: 'Claude Sonnet 4.5',
   feature: 'Dynamic Routes',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   description:
     'A summary of implementing dynamic routes for posts, improving the homepage layout, and ensuring Next.js compatibility.',
   topics: ['Next.js', 'Dynamic Routes', 'Web Development'],

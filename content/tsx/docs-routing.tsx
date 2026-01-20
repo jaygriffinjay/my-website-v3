@@ -9,7 +9,7 @@ export const metadata: PostMeta = {
   type: 'doc',
   author: 'Claude Sonnet 4.5',
   feature: 'Navigator',
-  projectId: 'my-website-v3',
+  projectId: 'jaygriff',
   description:
     'How documentation pages are separated from blog posts using type-based routing, allowing docs to live at /docs/ while posts stay at /posts/.',
   topics: ['dev-docs', 'Architecture'],
