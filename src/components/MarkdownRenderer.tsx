@@ -24,18 +24,15 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         ul: ({ children }) => <List>{children}</List>,
         ol: ({ children }) => <List ordered>{children}</List>,
         li: ({ children }) => <ListItem>{children}</ListItem>,
-        code: ({ children, ...props }: any) => {
-          // Block code has a className with content (like 'language-tsx')
-          // Inline code will not have a className
-          const isBlock = props.className && typeof props.className === 'string';
-          if (!isBlock) {
-            return <Code>{children}</Code>;
-          }
-          // Block code - extract language from className if present
-          const language = props.className.replace('language-', '') || 'plaintext';
-          return <CodeBlock language={language}>{String(children)}</CodeBlock>;
+        // Block code: pre wraps code blocks, extract content and render CodeBlock
+        pre: ({ children }: any) => {
+          const codeProps = children?.props;
+          const language = codeProps?.className?.replace('language-', '') || 'plaintext';
+          const code = codeProps?.children || '';
+          return <CodeBlock language={language}>{String(code)}</CodeBlock>;
         },
-        pre: ({ children }) => <>{children}</>, // Let code handle the pre
+        // Inline code: single backticks only
+        code: ({ children }) => <Code>{children}</Code>,
       }}
     >
       {content}

@@ -137,7 +137,7 @@ export default function AccountingToDevPost() {
 
       <Paragraph>
         We were doing proto-programming in school without calling it that: using CONCAT 
-        for text manipulation (the first thing you learn in actual programming!), data validation 
+        for string manipulation (the first thing you learn in actual programming!), data validation 
         for dropdown menus, navigation elements across sheets. We were building programs in Excel.
       </Paragraph>
 
@@ -147,13 +147,8 @@ export default function AccountingToDevPost() {
       </Paragraph>
 
       <Paragraph>
-        And that's when I realized: <strong>Excel is a terrible database and an even worse 
-        programming environment.</strong>
-      </Paragraph>
-
-      <Paragraph>
-        I was building complex systems in a tool designed for simple calculations. Combining 
-        functions into God's unholiest formulas just to achieve basic logic. There had to be 
+        But eventually I hit a wall where I was building complex systems in a tool designed for simple calculations. I used one too many utility cells or helper columns
+        before realizing maybe Excel isn't actually good at everything. Combining functions and utility cells into God's unholiest formulae broke the camel's back. There had to be 
         a better way.
       </Paragraph>
 
@@ -347,7 +342,7 @@ export default function AccountingToDevPost() {
       </Paragraph>
 
       <Paragraph>
-        Most developers don't understand:
+        Some developers won't understand:
       </Paragraph>
 
       <List>
