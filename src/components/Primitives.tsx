@@ -148,17 +148,17 @@ export const ListItem = styled.li`
 // ============================================================================
 
 export const Link = styled.a`
-  color: ${props => props.theme.colors.primary};
+  color: hsl(210, 100%, 60%);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
   
   &:hover {
-    border-bottom-color: ${props => props.theme.colors.primary};
+    border-bottom-color: hsl(210, 100%, 60%);
   }
   
   &:visited {
-    color: ${props => props.theme.colors.primary};
+    color: hsl(210, 100%, 60%);
   }
 `;
 

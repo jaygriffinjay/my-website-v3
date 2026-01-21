@@ -1,4 +1,4 @@
-import { Heading, Paragraph, List, ListItem, Divider } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Divider, Link } from '@/components/Primitives';
 import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
@@ -8,7 +8,7 @@ export const metadata: PostMeta = {
   author: ['Jay Griffin', 'Claude Sonnet 4.5'],
   authorshipNote: 'Jay provided the story and context, Claude structured and wrote the post, Jay edited and refined',
   type: 'post',
-  description: 'From double-entry bookkeeping to TypeScript: how an accounting degree became the foundation for a development career',
+  description: 'From debits and credits to TypeScript: how an accounting degree became the foundation for a career in software development',
   tags: ['career', 'accounting', 'self-taught', 'journey', 'excel'],
 };
 
@@ -22,8 +22,6 @@ export default function AccountingToDevPost() {
       <Paragraph>
         Nah. I didn't quit. I leveled up.
       </Paragraph>
-
-      <Divider />
 
       <Heading level={2}>The Real Origin Story: I Refused to Use WordPress</Heading>
 
@@ -133,24 +131,23 @@ export default function AccountingToDevPost() {
       <Heading level={2}>The Awakening: Excel is a Terrible Database</Heading>
 
       <Paragraph>
-        I became an Excel Grand Wizard. Pivot tables, VLOOKUP cascades, array formulas that 
-        would make senior accountants weep. I could make Excel do things it was never meant to do.
+        By the time I graduated in accounting I was an Excel Grand Wizard. Pivot tables, XLOOKUP, array formulas, Power Query, Macros? I was learning features 
+        that would make even senior accountants weep. I could make Excel do things it was never meant to do.
       </Paragraph>
 
       <Paragraph>
-        We were doing proto-programming in school without calling it that: using CONCATENATE 
+        We were doing proto-programming in school without calling it that: using CONCAT 
         for text manipulation (the first thing you learn in actual programming!), data validation 
         for dropdown menus, navigation elements across sheets. We were building programs in Excel.
       </Paragraph>
 
       <Paragraph>
-        I'd seen VBA too - recorded macros, read the generated code, even used someone else's 
-        VBA script at work to create templates. I understood VBA could do things, but never 
+        I'd seen VBA too - recorded macros, read the generated code, even loaded someone else's macros at work to create templates. I understood VBA could do things, but never 
         actually wrote it myself.
       </Paragraph>
 
       <Paragraph>
-        And that's when I realized: <strong>Excel is a shitty database and an even worse 
+        And that's when I realized: <strong>Excel is a terrible database and an even worse 
         programming environment.</strong>
       </Paragraph>
 
@@ -160,15 +157,33 @@ export default function AccountingToDevPost() {
         a better way.
       </Paragraph>
 
-      <Heading level={2}>The Progression: Tool Upgrades</Heading>
+      <Heading level={2}>How I Learned to Code? Tool Upgrades</Heading>
 
       <Paragraph>
         Once you realize you're fighting your tools, the path forward is obvious: get better tools.
       </Paragraph>
 
       <Heading level={3}>Level 1: AutoHotkey</Heading>
+
       <Paragraph>
-        Started with a simple goal: open frequent websites with a hotkey instead of typing URLs. 
+        After graduating with my accounting degree, I was supposed to be studying for the CPA exam. 
+        The CPA exam is particularly grueling - hundreds of hours of study across multiple sections. 
+        My only brief respite from the grind was how satisfying it was to play with the computer 
+        and work on automation. What started as a distraction became an obsession.
+      </Paragraph>
+
+      <Paragraph>
+        I became obsessed with launching applications faster. Windows Key + typing the app name for 
+        instant launching. Then I thought: what if I could do the same thing with my bookmarks? 
+        And what about text expansion to automate how I typed things on the computer? It felt like typing things in fast and precisely in search boxes was the best way to "get what I wanted/needed" from the computer rather than clicking around. (Little did I know, that's exactly what commands are.)
+      </Paragraph>
+
+      <Paragraph>
+        This exploration led me straight to AutoHotkey. And that's where everything started.
+      </Paragraph>
+
+      <Paragraph>
+        I started with a simple goal: open frequent websites with a hotkey instead of typing URLs. 
         One hotkey, one website. Easy enough.
       </Paragraph>
 
@@ -194,43 +209,46 @@ export default function AccountingToDevPost() {
         First taste of application programming logic. Mind = blown.
       </Paragraph>
 
-      <Heading level={3}>Level 2: Python</Heading>
+      <Heading level={3}>Level 2: HTML & CSS</Heading>
       <Paragraph>
-        Discovered pandas. Realized I could do in 10 lines of Python what took 50 cells 
-        of nested Excel formulas. Data analysis without the spreadsheet prison.
-      </Paragraph>
-      
-      <Paragraph>
-        I completed Harvard's CS50P (Python course) and became literate in Python. Finally 
-        felt like a "real" programmer.
-      </Paragraph>
-
-      <Heading level={3}>Level 3: HTML & CSS</Heading>
-      <Paragraph>
-        Then I had another realization: HTML is a language where I tell the screen what to do. It's a rendering 
+        After discovering that little tidbit of how things get rendered, I immediately made the connection to HTML and CSS. HTML is a language where I tell the screen what to do. It's a rendering 
         language. It's just instructions that tell the browser what to put on the screen. 
         CSS tells it how to make it look different.
       </Paragraph>
 
       <Paragraph>
         To a layman, this seems like an inefficient way to make ugly web pages. But I could 
-        see: if you make it pretty, and scale it up, it's more powerful than any Word doc 
+        see: if you make it pretty, and scale it up and give it lots of instructions, it's more powerful than any Word doc 
         or PDF could ever be. You can build actual interfaces.
       </Paragraph>
 
       <Paragraph>
-        Needed to present data analysis results. Excel charts were ugly. HTML let me build 
-        custom presentations.
+        I started playing around with HTML and CSS in earnest, making simple pages and learning how they worked.
+      </Paragraph>
+
+      <Heading level={3}>Level 3: Python</Heading>
+
+      <Paragraph>
+        Once I felt like I truly "got" it, I got very excited. I thought that maybe I really can do this after all. Even though I knew it was a long uphill battle of learning ahead. 
+        But I really was loving it so I moved forward. I completed Harvard's <Link href="https://www.edx.org/learn/python/harvard-university-cs50-s-introduction-to-programming-with-python" target="_blank" rel="noopener noreferrer">CS50P</Link> (Introduction to Programming with Python) and became literate in Python. Finally 
+        felt like a "real" programmer.
       </Paragraph>
 
       <Heading level={3}>Level 4: The Python Web Problem</Heading>
+
+      <Paragraph>
+        I started working on Harvard's <Link href="https://www.edx.org/learn/web-development/harvard-university-cs50-s-web-programming-with-python-and-javascript" target="_blank" rel="noopener noreferrer">CS50W</Link> (Web Programming with Python and JavaScript). Didn't 
+        finish it, but I did make some functional sites. I learned Django properly, picked up 
+        some JavaScript fundamentals, and started to understand how the web actually worked.
+      </Paragraph>
+
       <Paragraph>
         Here's where things got frustrating. I knew Python. I could build web backends with 
         Flask or Django. But for any interactivity on the frontend, I needed JavaScript.
       </Paragraph>
 
       <Paragraph>
-        Two completely different languages. Two different ecosystems. Every feature meant 
+        But it was frustrating. Two completely different languages. Two different ecosystems. Every feature meant 
         fighting to connect Python backend logic to JavaScript frontend behavior. It felt 
         like I was constantly translating between two languages that didn't want to talk 
         to each other.
@@ -272,13 +290,12 @@ export default function AccountingToDevPost() {
       </Paragraph>
 
       <Paragraph>
-        And Vite made the development experience actually pleasant. Fast refresh, no webpack 
-        hell, just write code and see it work.
+        And Vite made the development experience actually pleasant. Fast refresh, just write code and see it work.
       </Paragraph>
 
       <Paragraph>
         This was it. I could finally do full JavaScript without fighting Express. Just build 
-        interactive frontends and worry about backends later.
+        interactive frontends and worry about backends later when I really needed them. 
       </Paragraph>
 
       <Heading level={3}>The SSG Detour: Hugo, Jekyll, Eleventy</Heading>
@@ -289,7 +306,7 @@ export default function AccountingToDevPost() {
 
       <Paragraph>
         But then I hit Hugo's templating language. And I realized: I don't want to code 
-        anything real in such a brittle language. The skeleton and conventions were great. 
+        anything real in such a brittle and stunted language. The skeleton and conventions were great. 
         The actual programming experience? Terrible.
       </Paragraph>
 
@@ -313,7 +330,7 @@ export default function AccountingToDevPost() {
 
       <Paragraph>
         Now I'm building full-stack applications with type safety, server-side rendering, 
-        and proper architecture. The Excel wizard became a software engineer.
+        and proper architecture. The Excel wizard became a software developer.
       </Paragraph>
 
       <Paragraph>
@@ -334,16 +351,14 @@ export default function AccountingToDevPost() {
       </Paragraph>
 
       <List>
-        <ListItem>ERP systems and how businesses actually operate</ListItem>
-        <ListItem>Financial data workflows and controls</ListItem>
-        <ListItem>Audit trails and data integrity requirements</ListItem>
-        <ListItem>Database normalization (because I learned it for accounting systems)</ListItem>
-        <ListItem>Business logic and unit economics</ListItem>
+        <ListItem>How to take a creation and turn it into a real business</ListItem>
+        <ListItem>Organizational controls and data controls</ListItem>
+        <ListItem>Financial compliance, Audit compliance, data compliance</ListItem>
+        <ListItem>Financial statements and business performance metrics</ListItem>
       </List>
 
       <Paragraph>
-        That accounting degree? It's my differentiator. I can build software that solves 
-        real business problems because I understand the business side.
+        That business degree? It's my differentiator. I can build software that could spin off into a business because I understand the business side.
       </Paragraph>
 
       <Heading level={2}>The Pattern: Solving Tool Limitations</Heading>
@@ -362,8 +377,7 @@ export default function AccountingToDevPost() {
       </List>
 
       <Paragraph>
-        Each step was a tool upgrade. Each upgrade unlocked new capabilities. The 
-        accounting problems I was trying to solve just kept demanding better solutions.
+        Each step was a tool upgrade. Each upgrade unlocked new capabilities.
       </Paragraph>
 
       <Divider />
@@ -371,45 +385,14 @@ export default function AccountingToDevPost() {
       <Heading level={2}>Five Years Later</Heading>
 
       <Paragraph>
-        It's been 5 years since I wrote my first line of code. I'm self-taught. I have 
-        no CS degree. Just an accounting degree and an obsessive need to upgrade my tools.
+        It's been under 5 years since I wrote my first line of code. I'm self-taught. I have 
+        no CS degree. Just an accounting degree and a healthy dose of computer nerdiness.
       </Paragraph>
 
       <Paragraph>
-        Now I'm building:
-      </Paragraph>
-
-      <List>
-        <ListItem>Custom Next.js architectures with TSX-first content systems</ListItem>
-        <ListItem>Type-safe component libraries with Emotion</ListItem>
-        <ListItem>Server-side rendering with dynamic routing</ListItem>
-        <ListItem>Publishing platforms that execute programs, not just display text</ListItem>
-      </List>
-
-      <Paragraph>
-        I didn't quit accounting. I just refused to be limited by Excel formulas when I 
-        could write actual code.
-      </Paragraph>
-
-      <Heading level={2}>The Takeaway</Heading>
-
-      <Paragraph>
-        If you're an accountant (or any knowledge worker) who keeps hitting Excel's 
-        limitations, you're not stuck. You're just using the wrong tool.
-      </Paragraph>
-
-      <Paragraph>
-        Learn to code. Not because programming is better than accounting, but because 
-        code is a better tool than spreadsheets.
-      </Paragraph>
-
-      <Paragraph>
-        Your domain expertise + programming skills = actual superpowers.
-      </Paragraph>
-
-      <Paragraph>
-        I didn't quit accounting. I compiled it into a type-safe, server-rendered, 
-        production-grade skill stack.
+        And honestly? Software development feels like the highest use of my skills. I'm 
+        not doing glorified software-assisted paperwork anymore. I'm building systems, 
+        solving problems, creating tools that actually matter. This is what I was meant to do.
       </Paragraph>
 
       <Paragraph>
