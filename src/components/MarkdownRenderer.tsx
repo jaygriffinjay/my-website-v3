@@ -2,7 +2,7 @@
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Heading, Paragraph, List, ListItem, Code, Divider } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Code, Divider, Blockquote } from '@/components/Primitives';
 import { CodeBlock } from '@/components/CodeBlock/CodeBlock';
 
 interface MarkdownRendererProps {
@@ -19,6 +19,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         h3: ({ children }) => <Heading level={3}>{children}</Heading>,
         h4: ({ children }) => <Heading level={4}>{children}</Heading>,
         p: ({ children }) => <Paragraph>{children}</Paragraph>,
+        blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
         hr: () => <Divider />,
         ul: ({ children }) => <List>{children}</List>,
         ol: ({ children }) => <List ordered>{children}</List>,
