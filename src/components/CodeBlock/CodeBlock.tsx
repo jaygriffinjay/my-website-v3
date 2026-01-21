@@ -21,12 +21,79 @@ interface CodeBlockProps {
   children: string;
   showLineNumbers?: boolean; // Currently not implemented
   showHeader?: boolean; // Show language label and copy button
+  filename?: string; // Optional filename to display in header
+}
+
+// Icon configuration with per-icon adjustments for pixel-perfect alignment
+interface IconConfig {
+  filename: string;
+  adjustY?: number; // Vertical offset in pixels
+  adjustX?: number; // Horizontal offset in pixels
+  filter?: string;   // CSS filter (e.g., for inverting colors)
+}
+
+const iconConfigs: Record<string, IconConfig> = {
+  'ts': { filename: 'typescript' },
+  'typescript': { filename: 'typescript' },
+  'tsx': { filename: 'react' },
+  'js': { filename: 'javascript' },
+  'javascript': { filename: 'javascript' },
+  'jsx': { filename: 'react' },
+  'css': { filename: 'css' },
+  'html': { filename: 'html' },
+  'markup': { filename: 'html' },
+  'xml': { filename: 'xml' },
+  'default': { filename: 'default', filter: 'brightness(0) invert(1)' },
+};
+
+// Get file icon config based on extension
+function getIconConfig(filename: string | undefined, language: string | undefined): IconConfig {
+  // If filename provided, use its extension
+  if (filename) {
+    const extension = filename.split('.').pop()?.toLowerCase();
+    return (extension && iconConfigs[extension]) ? iconConfigs[extension] : iconConfigs['default'];
+  }
+  
+  // Otherwise fall back to language prop
+  if (language && iconConfigs[language]) {
+    return iconConfigs[language];
+  }
+  
+  return iconConfigs['default'];
+}
+
+// Get display filename or extension
+function getDisplayName(filename: string | undefined, language: string | undefined): string | undefined {
+  if (filename) return filename;
+  
+  // Map language to extension for display
+  const languageToExtension: Record<string, string> = {
+    'ts': '.ts',
+    'typescript': '.ts',
+    'tsx': '.tsx',
+    'js': '.js',
+    'javascript': '.js',
+    'jsx': '.jsx',
+    'css': '.css',
+    'html': '.html',
+    'markup': '.html',
+    'xml': '.xml',
+    'text': '.txt',
+    'plaintext': '.txt',
+    'markdown': '.md',
+    'json': '.json',
+  };
+  
+  return language ? languageToExtension[language] : undefined;
 }
 
 // Ensure Prism.js highlights the code correctly
-export function CodeBlock({ language, children, showHeader = true }: CodeBlockProps) {
+export function CodeBlock({ language, children, showHeader = true, filename }: CodeBlockProps) {
   const codeRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
+  
+  const iconConfig = getIconConfig(filename, language);
+  const displayName = getDisplayName(filename, language);
 
   useEffect(() => {
     if (codeRef.current) {
@@ -44,13 +111,43 @@ export function CodeBlock({ language, children, showHeader = true }: CodeBlockPr
     }
   };
 
+  const iconSrc = `/file-icons/${iconConfig.filename}.svg`;
+  const iconStyle: React.CSSProperties = {
+    ...(iconConfig.filter && { filter: iconConfig.filter }),
+    ...(iconConfig.adjustY && { transform: `translateY(${iconConfig.adjustY}px)` }),
+    ...(iconConfig.adjustX && { marginLeft: `${iconConfig.adjustX}px` }),
+  };
+
   return (
     <div css={codeBlockTheme}>
       {showHeader && (
         <div css={headerStyles}>
-          <span>{language || 'text'}</span>
+          <span style={{ display: 'flex', alignItems: 'center', marginLeft: '-4px' }}>
+            <span style={{ 
+              width: '32px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center' 
+            }}>
+              <img 
+                src={iconSrc} 
+                alt="" 
+                width="28" 
+                height="28" 
+                style={iconStyle}
+              />
+            </span>
+            {displayName && (
+              <span style={{ 
+                color: '#d4d4d4', 
+                fontSize: '13px', 
+                marginTop: '2px',
+                opacity: 0.9
+              }}>{displayName}</span>
+            )}
+          </span>
           <button
-            css={copied ? copiedButtonStyles : copyButtonStyles}
+            css={copyButtonStyles}
             onClick={handleCopy}
             aria-label="Copy code"
             title={copied ? 'Copied!' : 'Copy code'}

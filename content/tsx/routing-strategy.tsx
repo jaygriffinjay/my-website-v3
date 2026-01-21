@@ -17,19 +17,6 @@ export const metadata: PostMeta = {
 const RoutingStrategyDoc = () => {
   return (
     <>
-      <Paragraph>
-        We already have design tokens (theme objects) and full CSS power (Emotion). Tailwind adds:
-      </Paragraph>
-      <List>
-        <ListItem>❌ Learning overhead (hundreds of class names)</ListItem>
-        <ListItem>❌ Messy markup (class soup)</ListItem>
-        <ListItem>❌ Limited customization (predefined values)</ListItem>
-        <ListItem>❌ Extra tooling (config files, build setup)</ListItem>
-        <ListItem>❌ Mixed styling paradigms (when you inevitably need real CSS)</ListItem>
-      </List>
-
-      <Divider />
-
       <Heading level={2}>The Challenge</Heading>
       <Paragraph>
         This site hosts multiple projects: the jaygriff.com site itself, a Strava analyzer, 
@@ -72,8 +59,7 @@ const RoutingStrategyDoc = () => {
       <Heading level={2}>How It Works</Heading>
       
       <Heading level={3}>Content Files Use Metadata</Heading>
-      <CodeBlock language="typescript">{`// content/tsx/strava-api-reference.tsx
-export const metadata: PostMeta = {
+      <CodeBlock language="typescript" filename="strava-api-reference.tsx">{`export const metadata: PostMeta = {
   title: 'Strava API Reference',
   slug: 'strava-api-reference',
   projectId: 'strava',  // ← Connects to project
@@ -82,8 +68,7 @@ export const metadata: PostMeta = {
 };`}</CodeBlock>
 
       <Heading level={3}>Routes Handle All Projects</Heading>
-      <CodeBlock language="typescript">{`// src/app/docs/[slug]/page.tsx
-export default async function Page({ params }) {
+      <CodeBlock language="typescript" filename="src/app/docs/[slug]/page.tsx">{`export default async function Page({ params }) {
   const { slug } = await params;
   const content = await loadContentBySlug(slug, 'doc');
   
@@ -97,8 +82,7 @@ export default async function Page({ params }) {
 }`}</CodeBlock>
 
       <Heading level={3}>Project Pages Query by Metadata</Heading>
-      <CodeBlock language="typescript">{`// src/app/strava/page.tsx
-export default async function StravaPage() {
+      <CodeBlock language="typescript" filename="src/app/strava/page.tsx">{`export default async function StravaPage() {
   const allContent = await getAllContent();
   const stravaContent = allContent.filter(
     c => c.metadata.projectId === 'strava'
@@ -146,8 +130,7 @@ export default async function StravaPage() {
       </Paragraph>
 
       <Heading level={3}>Extract Content by Metadata</Heading>
-      <CodeBlock language="typescript">{`// scripts/migrate-project.ts
-import { getAllContent } from '@/lib/posts';
+      <CodeBlock language="typescript" filename="scripts/migrate-project.ts">{`import { getAllContent } from '@/lib/posts';
 import fs from 'fs';
 
 async function migrateProject(projectId: string, targetDir: string) {
@@ -169,8 +152,7 @@ async function migrateProject(projectId: string, targetDir: string) {
 migrateProject('strava', '../strava-app');\n`}</CodeBlock>
 
       <Heading level={3}>Set Up Redirects</Heading>
-      <CodeBlock language="typescript">{`// next.config.ts
-const nextConfig = {
+      <CodeBlock language="typescript" filename="next.config.ts">{`const nextConfig = {
   async redirects() {
     return [
       {
@@ -230,8 +212,7 @@ const nextConfig = {
       <Paragraph>
         Project IDs become clickable badges on content pages:
       </Paragraph>
-      <CodeBlock language="tsx">{`// In ContentHeader component
-{metadata.projectId && (
+      <CodeBlock language="tsx" filename="ContentHeader.tsx">{`{metadata.projectId && (
   <Link href={\`/\${metadata.projectId}\`}>
     <Badge>{metadata.projectId}</Badge>
   </Link>

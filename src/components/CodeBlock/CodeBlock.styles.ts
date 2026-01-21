@@ -280,13 +280,12 @@ export const headerStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 8px;
   background: #2d2d2d;
   border-bottom: 1px solid #404040;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
   color: #9cdcfe;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 `;
 
@@ -312,8 +311,8 @@ export const copyButtonStyles = css`
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 `;
 

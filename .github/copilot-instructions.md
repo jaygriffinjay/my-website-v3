@@ -87,5 +87,12 @@ import { Heading, Paragraph, CodeBlock } from '@/components/Primitives'; // Code
 ## Directives for AI Agents
 
 - **Do Not Invent Components**: Avoid creating new components unless explicitly instructed to do so. Focus on reusing and extending existing components wherever possible.
-
---- **Follow Existing Patterns**: Adhere to the established file structure, naming conventions, and coding styles present in the codebase.
+- **Follow Existing Patterns**: Adhere to the established file structure, naming conventions, and coding styles present in the codebase.
+- **Rich Metadata for Content Pages**: When generating content files in `content/tsx/`, you are typically the first author. Add thoughtful, rich metadata to the `PostMeta` export:
+  - Use descriptive, accurate `title` values
+  - Add relevant `tags` array (e.g., `['dev', 'components']`, `['design', 'ux']`, `['git', 'workflow']`)
+  - Write clear `description` strings that explain the content's purpose
+  - Include proper `date` in ISO 8601 format (e.g., '2026-01-21T10:30:00Z')
+  - Ensure `slug` is kebab-case and matches the filename
+  - Add any other optional fields from `src/types/post.ts` that are relevant
+  - This metadata will eventually drive the site's organization and routing system, so be intentional about it
