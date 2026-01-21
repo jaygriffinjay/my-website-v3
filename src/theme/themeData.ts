@@ -81,7 +81,7 @@ export const defaultConfig: ThemeConfig = {
   primaryHue: 220,
   primarySaturation: 80,
   backgroundColor: '#1a1a1a',
-  textColor: '#e5e5e5',
+  textColor: '#cccccc',
   borderColor: '#333333',
   hoverColor: '#2a2a2a',
   
