@@ -1,4 +1,4 @@
-import { Heading, Paragraph, List, ListItem } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Code } from '@/components/Primitives';
 import { CodeBlock } from '@/components/CodeBlock/CodeBlock';
 import type { PostMeta } from '@/types/post';
 
@@ -30,15 +30,14 @@ const HierarchicalPagesSpec = () => {
       <Heading level={2}>Solution: Notion-Style Flat Routing</Heading>
       <Paragraph>
         Parent-child relationships exist in metadata only. URLs remain flat. A child page under "Roadmap" lives at 
-        `/docs/search-feature-spec`, not `/docs/roadmap/search-feature-spec`. The hierarchy is shown through 
+        <Code>/docs/search-feature-spec</Code>, not <Code>/docs/roadmap/search-feature-spec</Code>. The hierarchy is shown through 
         breadcrumbs and automatic child listings.
       </Paragraph>
 
       <Heading level={2}>Data Model</Heading>
       <Heading level={3}>PostMeta Extension</Heading>
-      <CodeBlock language="typescript">
-{`// src/types/post.ts
-export interface PostMeta {
+      <CodeBlock language="typescript" filename="src/types/post.ts">
+{`export interface PostMeta {
   title: string;
   slug: string;
   date: string;
@@ -72,9 +71,8 @@ export const metadata: PostMeta = {
       <Paragraph>
         Parent pages automatically show their children. Create a reusable component:
       </Paragraph>
-      <CodeBlock language="typescript">
-{`// src/components/ChildPages.tsx
-export async function ChildPages({ parentSlug }: { parentSlug: string }) {
+      <CodeBlock language="typescript" filename="src/components/ChildPages.tsx">
+{`export async function ChildPages({ parentSlug }: { parentSlug: string }) {
   const allPages = await getAllDocs();
   const children = allPages
     .filter(page => page.metadata.parentSlug === parentSlug)
@@ -102,9 +100,8 @@ export async function ChildPages({ parentSlug }: { parentSlug: string }) {
       </CodeBlock>
 
       <Paragraph>Usage in parent page:</Paragraph>
-      <CodeBlock language="typescript">
-{`// content/tsx/roadmap.tsx
-const RoadmapDoc = () => {
+      <CodeBlock language="typescript" filename="content/tsx/roadmap.tsx">
+{`const RoadmapDoc = () => {
   return (
     <>
       <Heading level={2}>Roadmap Overview</Heading>
@@ -120,9 +117,8 @@ const RoadmapDoc = () => {
       <Paragraph>
         Child pages show breadcrumb trail. Add to ContentHeader component:
       </Paragraph>
-      <CodeBlock language="typescript">
-{`// src/components/Breadcrumbs.tsx
-export async function Breadcrumbs({ currentPage }: { currentPage: PostMeta }) {
+      <CodeBlock language="typescript" filename="src/components/Breadcrumbs.tsx">
+{`export async function Breadcrumbs({ currentPage }: { currentPage: PostMeta }) {
   if (!currentPage.parentSlug) return null;
   
   const parent = await getDocBySlug(currentPage.parentSlug);
@@ -153,9 +149,8 @@ export async function Breadcrumbs({ currentPage }: { currentPage: PostMeta }) {
         <ListItem>Navigate to new page or refresh</ListItem>
       </List>
 
-      <CodeBlock language="typescript">
-{`// API endpoint: /api/create-page (dev only)
-export async function POST(request: Request) {
+      <CodeBlock language="typescript" filename="src/app/api/create-page/route.ts">
+{`export async function POST(request: Request) {
   if (process.env.NODE_ENV !== 'development') {
     return Response.json({ error: 'Not available in production' }, { status: 403 });
   }
@@ -164,14 +159,15 @@ export async function POST(request: Request) {
   const slug = kebabCase(title);
   const timestamp = new Date().toISOString();
   
-  const fileContent = \`import { Heading, Paragraph } from '@/components/Primitives';
+  const fileContent = \\\`
+import { Heading, Paragraph } from '@/components/Primitives';
 import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
-  title: '\${title}',
-  slug: '\${slug}',
-  parentSlug: '\${parentSlug}',
-  date: '\${timestamp}',
+  title: '\\\${title}',
+  slug: '\\\${slug}',
+  parentSlug: '\\\${parentSlug}',
+  date: '\\\${timestamp}',
   author: ['Jay Griffin'],
   type: 'doc',
   projectId: 'jaygriff',
@@ -179,7 +175,7 @@ export const metadata: PostMeta = {
   tags: [],
 };
 
-const \${pascalCase(slug)} = () => {
+const \\\${pascalCase(slug)} = () => {
   return (
     <>
       <Heading level={2}>Overview</Heading>
@@ -188,11 +184,11 @@ const \${pascalCase(slug)} = () => {
   );
 };
 
-export default \${pascalCase(slug)};
-\`;
+export default \\\${pascalCase(slug)};
+\\\`;
 
   await fs.writeFile(
-    path.join(process.cwd(), 'content/tsx', \`\${slug}.tsx\`),
+    path.join(process.cwd(), 'content/tsx', \\\`\\\${slug}.tsx\\\`),
     fileContent
   );
   

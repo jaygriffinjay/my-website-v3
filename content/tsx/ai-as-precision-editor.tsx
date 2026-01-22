@@ -190,8 +190,8 @@ export default function AICodeEditingPost() {
 
       <Paragraph>
         Even if AI assistants couldn't generate a single line of code - if they could <em>only</em> do 
-        precise, context-aware editing - they would still be the most valuable programming tool 
-        innovation in decades.
+        precise, context-aware editing - they would still be one of the most valuable programming tool 
+        innovations in decades.
       </Paragraph>
 
       <Paragraph>
