@@ -3,7 +3,7 @@ import { ContentWrapper } from '@/components/ContentWrapper';
 import type { PostMeta } from '@/types/post';
 
 export const routeMetadata: PostMeta = {
-  title: 'Site Features',
+  title: 'jaygriff.com Features',
   slug: 'features',
   date: '2026-01-27T00:00:00Z',
   author: 'Jay Griffin',
@@ -33,7 +33,7 @@ export default function FeaturesDoc() {
         <List>
           <ListItem><strong>TSX Components</strong> - Full React power for interactive pages, custom layouts, and complex compositions</ListItem>
           <ListItem><strong>Markdown Files</strong> - Write in markdown with JSON frontmatter, auto-renders with primitives via react-markdown + remark-gfm</ListItem>
-          <ListItem><strong>Zero Config</strong> - Drop a file in content/, it appears on the site. No build config, no manual registration</ListItem>
+          <ListItem><strong>Zero Config</strong> - Drop a file in content/, add metadata, it appears on the site. No build config, no manual registration</ListItem>
           <ListItem><strong>Unified Metadata</strong> - Same PostMeta interface for both formats, consistent routing and discovery</ListItem>
         </List>
 

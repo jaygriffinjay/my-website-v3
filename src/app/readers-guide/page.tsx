@@ -93,7 +93,7 @@ export default function ContentGuidePage() {
 
         <Heading level={3}>🔧 AI-Assisted (&lt;100% Human)</Heading>
         <List>
-          <ListItem><strong>Author field:</strong> Jay Griffin (sometimes with authorship note explaining AI involvement)</ListItem>
+          <ListItem><strong>Author field:</strong> Jay Griffin, model name listed (sometimes with authorship note explaining AI involvement)</ListItem>
           <ListItem><strong>Process:</strong> AI generated most content. I made editorial decisions, removed weak sections, added my own words, restructured, or heavily edited.</ListItem>
           <ListItem><strong>What this means:</strong> Hybrid texture. You'll feel the seams—AI flow interrupted by genuine human voice and judgment.</ListItem>
           <ListItem><strong>Accuracy:</strong> Better than 100% AI, but still no guarantee. I exercised judgment on structure and quality, not necessarily fact-checking every detail.</ListItem>

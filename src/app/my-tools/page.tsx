@@ -17,6 +17,7 @@ export default function MyToolsPage() {
   return (
     <Container size="sm">
       <ContentWrapper>
+        <Heading level={1}>My Tools</Heading>
         <Paragraph>
           I've tried a lot of tools over the years and settled on what actually works for me. 
           But I'm always trying new things because software continues to get better!

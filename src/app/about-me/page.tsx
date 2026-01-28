@@ -51,9 +51,8 @@ export default function AboutMePage() {
         both my workspace and my publishing platform. It is the container for a lot of my other apps where I can just host and 
         demo them on this site.  While on the front end this just looks like a website, on the back end this site is a testbed 
         for my full-featured application framework I use to make all my apps. It's an excuse to improve the framework and 
-        factor out my best work into a reusable system I endearingly call my <Link href="https://github.com/jaygriffinjay/bootstrap-fullstack-webapp" target="_blank" rel="noopener noreferrer">Bootstrap Repo</Link>, otherwise known as a "boilerplate". Read more about the architecture and 
-        features in <Link href="/docs/about-this-site">about this site</Link> or check out 
-        the <Link href="/docs/roadmap">roadmap</Link> for what's coming next.
+        factor out my best work into a reusable system I endearingly call my <Link href="https://github.com/jaygriffinjay/bootstrap-fullstack-webapp" target="_blank" rel="noopener noreferrer">Bootstrap Repo</Link>, otherwise known as a "boilerplate". Learn more <Link href="/about-this-site">about this site</Link>, explore the <Link href="/features">completed features</Link>, or check out 
+        the <Link href="/roadmap">future roadmap</Link>.
       </Paragraph>
 
       <Divider />
