@@ -24,7 +24,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         ul: ({ children }) => <List>{children}</List>,
         ol: ({ children }) => <List ordered>{children}</List>,
         li: ({ children }) => <ListItem>{children}</ListItem>,
-        a: ({ href, children }) => <Link href={href}>{children}</Link>,
+        a: ({ href, children }) => <Link href={href || '#'}>{children}</Link>,
         // Block code: pre wraps code blocks, extract content and render CodeBlock
         pre: ({ children }: any) => {
           const codeProps = children?.props;

@@ -1,7 +1,8 @@
-import { Heading, Paragraph, List, ListItem, Link } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Link, Container } from '@/components/Primitives';
+import { ContentWrapper } from '@/components/ContentWrapper';
 import type { PostMeta } from '@/types/post';
 
-export const metadata: PostMeta = {
+export const routeMetadata: PostMeta = {
   title: 'About This Site',
   slug: 'about-this-site',
   date: '2026-01-21T00:00:00Z',
@@ -11,12 +12,14 @@ export const metadata: PostMeta = {
   description: 'What this site is and how it works.',
   tags: ['meta', 'about'],
   authorshipNote: 'Claude wrote this based on Jay\'s direction and edits.',
+  path: '/about-this-site',
 };
 
-const AboutThisSite = () => {
+export default function AboutThisSite() {
   return (
-    <>
-    <Heading level={2}>What This Site Is</Heading>
+    <Container size="sm">
+      <ContentWrapper>
+        <Heading level={1}>{routeMetadata.title}</Heading>
     <Paragraph>
         This is a personal website built from scratch to work exactly how I want it to work. 
         A place for documenting my work, my thoughts, and anything I find interesting.
@@ -49,7 +52,7 @@ const AboutThisSite = () => {
       </Paragraph>
 
       <Paragraph>
-        More practically: I needed a cross between a personal knowledge management system, a development blog, a regular blog, and a documentation site with the 
+        More practically: I needed a cross between a personal knowledge management system, a development blog and workspace, a regular blog, and a documentation site with the 
         flexibility to evolve as needs change. Something that makes my work easier.
       </Paragraph>
 
@@ -87,8 +90,8 @@ const AboutThisSite = () => {
 
       <Heading level={2}>Note-taking and knowledge accumulation</Heading>
       <Paragraph>
-        Instead of using a note taking app and writing down stuff I did or stuff to remember or stuff I think 
-        is interesting or stuff I think is important, I constantly generate detailed documents of this stuff 
+        Instead of using a note taking app and writing down stuff I did, stuff to remember, stuff I think 
+        is interesting, or stuff I think is important, I constantly generate detailed documents of this stuff 
         and make them available as content on the site.
       </Paragraph>
 
@@ -112,12 +115,10 @@ const AboutThisSite = () => {
       </Paragraph>
 
       <Paragraph>
-        I can see how I can make it even faster and better in a lot of ways (see <Link href="/docs/roadmap">roadmap</Link> for component 
+        I can see how I can make it even faster and better in a lot of ways (see <Link href="/roadmap">roadmap</Link> for component 
         generator spec and metadata editor spec).
       </Paragraph>
-      
-    </>
+      </ContentWrapper>
+    </Container>
   );
-};
-
-export default AboutThisSite;
+}

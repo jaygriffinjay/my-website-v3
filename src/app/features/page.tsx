@@ -1,7 +1,8 @@
-import { Heading, Paragraph, List, ListItem } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Container } from '@/components/Primitives';
+import { ContentWrapper } from '@/components/ContentWrapper';
 import type { PostMeta } from '@/types/post';
 
-export const metadata: PostMeta = {
+export const routeMetadata: PostMeta = {
   title: 'Site Features',
   slug: 'features',
   date: '2026-01-26T00:00:00Z',
@@ -9,12 +10,15 @@ export const metadata: PostMeta = {
   type: 'doc',
   description: 'A detailed list of completed features and functionality available on jaygriff.com',
   tags: ['features', 'completed', 'roadmap'],
+  path: '/features',
 };
 
-const FeaturesDoc = () => {
+export default function FeaturesDoc() {
   return (
-    <>
-      <Heading level={2}>✅ Completed Features</Heading>
+    <Container size="sm">
+      <ContentWrapper>
+        <Heading level={1}>{routeMetadata.title}</Heading>
+        <Heading level={2}>✅ Completed Features</Heading>
       <List>
         <ListItem>
           <strong>Markdown File Support</strong> - Parse JSON frontmatter, render with react-markdown + remark-gfm.
@@ -41,8 +45,7 @@ const FeaturesDoc = () => {
           <strong>Primitive Component System</strong> - Constraint-based design system that can be composed by AI for quick and beautiful pages.
         </ListItem>
       </List>
-    </>
+      </ContentWrapper>
+    </Container>
   );
-};
-
-export default FeaturesDoc;
+}

@@ -5,6 +5,7 @@ import { css, keyframes } from '@emotion/react';
 import { useRef, useState, useEffect } from 'react';
 import { Sekuya } from 'next/font/google';
 import Navigator from './Navigator';
+import { NavMenu } from './NavMenu';
 import type { RouteEntry } from '@/lib/routes';
 
 const sekuya = Sekuya({ subsets: ['latin'], weight: ['400'] });
@@ -181,6 +182,7 @@ export default function NavBar({ routes }: NavBarProps) {
 
   return (
     <nav css={navBarStyles}>
+      <NavMenu />
       <div css={titleContainerStyles}>
         <Link
           href="/"

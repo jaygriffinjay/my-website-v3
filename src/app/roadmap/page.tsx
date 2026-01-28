@@ -1,7 +1,8 @@
-import { Heading, Paragraph, List, ListItem, Link } from '@/components/Primitives';
+import { Heading, Paragraph, List, ListItem, Link, Container } from '@/components/Primitives';
+import { ContentWrapper } from '@/components/ContentWrapper';
 import type { PostMeta } from '@/types/post';
 
-export const metadata: PostMeta = {
+export const routeMetadata: PostMeta = {
   title: 'jaygriff.com Roadmap',
   slug: 'roadmap',
   date: '2026-01-19T00:00:00Z',
@@ -12,12 +13,15 @@ export const metadata: PostMeta = {
   description:
     'Active work, planned features, and long-term ideas for jaygriff.com.',
   tags: ['roadmap', 'planning', 'features'],
+  path: '/roadmap',
 };
 
-const RoadmapDoc = () => {
+export default function RoadmapDoc() {
   return (
-    <>
-      <Heading level={3}>Content System</Heading>
+    <Container size="sm">
+      <ContentWrapper>
+        <Heading level={1}>{routeMetadata.title}</Heading>
+        <Heading level={3}>Content System</Heading>
       <List>
         <ListItem>
           <strong>AI-Powered Metadata Editor (Dev Mode)</strong> - Click ContentHeader to open modal with smart editing.
@@ -134,10 +138,9 @@ const RoadmapDoc = () => {
 
       <Heading level={2}>✅ Completed</Heading>
       <Paragraph>
-        The completed roadmap items have been moved to a dedicated <Link href="/docs/features">Features</Link> page.
+        The completed roadmap items have been moved to a dedicated <Link href="/features">Features</Link> page.
       </Paragraph>
-    </>
+      </ContentWrapper>
+    </Container>
   );
-};
-
-export default RoadmapDoc;
+}

@@ -1,7 +1,8 @@
 'use client';
 
 import styled from '@emotion/styled';
-import type { ReactNode } from 'react';
+import NextLink from 'next/link';
+import type { ReactNode, AnchorHTMLAttributes } from 'react';
 
 // ============================================================================
 // CONTENT PRIMITIVES - The "Markdown Philosophy" as Components
@@ -147,7 +148,7 @@ export const ListItem = styled.li`
 // 4. LINKS
 // ============================================================================
 
-export const Link = styled.a`
+const linkStyles = `
   color: hsl(210, 100%, 60%);
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -161,6 +162,34 @@ export const Link = styled.a`
     color: hsl(210, 100%, 60%);
   }
 `;
+
+const StyledAnchor = styled.a`${linkStyles}`;
+const StyledNextLink = styled(NextLink)`${linkStyles}`;
+
+interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+  href: string;
+  children: ReactNode;
+}
+
+export function Link({ href, children, ...props }: LinkProps) {
+  // Check if external link (http/https or mailto/tel)
+  const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('tel:');
+  
+  if (isExternal) {
+    return (
+      <StyledAnchor href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
+      </StyledAnchor>
+    );
+  }
+  
+  // Internal link - use Next.js Link for SPA navigation
+  return (
+    <StyledNextLink href={href} {...props}>
+      {children}
+    </StyledNextLink>
+  );
+}
 
 // ============================================================================
 // 5. INLINE CODE
