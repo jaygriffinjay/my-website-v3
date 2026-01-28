@@ -3,21 +3,21 @@ import { ContentWrapper } from '@/components/ContentWrapper';
 import type { PostMeta } from '@/types/post';
 
 export const routeMetadata: PostMeta = {
-  title: 'Content Guide & Disclaimers',
-  slug: 'content-guide',
+  title: 'Reader\'s Guide',
+  slug: 'readers-guide',
   date: '2026-01-27T00:00:00Z',
   author: 'Jay Griffin',
   type: 'doc' as const,
   tags: ['meta', 'transparency', 'ai', 'disclaimers'],
   description: 'How to interpret content labels, understand workflow transparency, and what guarantees (or lack thereof) apply to content on this site.',
-  path: '/content-guide',
+  path: '/readers-guide',
 };
 
 export default function ContentGuidePage() {
   return (
     <Container size="sm">
       <ContentWrapper>
-        <Heading level={1}>Authorship and Content on This Site</Heading>
+        <Heading level={1}>Reader's Guide</Heading>
 
         <Paragraph>
           How to interpret content labels and what guarantees (or lack thereof) apply to content on this site.

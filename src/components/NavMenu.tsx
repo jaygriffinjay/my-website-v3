@@ -66,6 +66,7 @@ export function NavMenu() {
     userSelect: 'none' as const,
     color: theme.colors.text,
     fontSize: theme.fontSizes.base,
+    fontWeight: 700,
     transition: 'background-color 0.15s ease',
     '&:hover': {
       backgroundColor: theme.colors.border,
@@ -120,7 +121,7 @@ export function NavMenu() {
           </DropdownMenu.Item>
           
           <DropdownMenu.Item css={itemStyles} asChild>
-            <Link href="/content-guide">Content Guide</Link>
+            <Link href="/readers-guide">Reader's Guide</Link>
           </DropdownMenu.Item>
           
           <DropdownMenu.Item css={itemStyles} asChild>

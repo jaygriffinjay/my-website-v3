@@ -3,7 +3,7 @@
   "title": "Semantic Compression for AI Workflows",
   "slug": "semantic-compression-for-ai",
   "date": "2026-01-27T00:00:00Z",
-  "author": ["Jay Griffin"],
+  "author": ["Jay Griffin, Claude Sonnet 4.5"],
   "authorshipNote": "🔧 AI-Assisted - Conversation synthesis of Jay's ideas that Claude structured and articulated",
   "type": "post",
   "description": "Exploring how to compress semantic meaning into symbolic syntax for more efficient AI prompting and higher-quality AI-generated outputs",

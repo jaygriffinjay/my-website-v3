@@ -4,7 +4,7 @@ This is my website where I publish all my software development work and some per
 
 Written entirely in TypeScript using React, Next.js, and Emotion. 
 
-To learn more about this project I would browse the meta docs on the site itself at [/docs](https://jaygriff.com/docs).
+To learn more about this project I would browse the meta docs on the site itself or I would start at jaygriff.com/about-this-site.
 
 ## Getting Started
 Clone this repo and then:
