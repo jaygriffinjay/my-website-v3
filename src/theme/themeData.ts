@@ -8,8 +8,7 @@
 
 export interface ThemeConfig {
   // Colors
-  primaryHue: number;        // 0-360
-  primarySaturation: number; // 0-100
+  primaryColor: string;
   backgroundColor: string;
   textColor: string;
   borderColor: string;
@@ -78,8 +77,7 @@ export interface AppTheme {
 
 export const defaultConfig: ThemeConfig = {
   // Colors
-  primaryHue: 220,
-  primarySaturation: 80,
+  primaryColor: 'hsl(210, 100%, 60%)',
   backgroundColor: '#1a1a1a',
   textColor: '#cccccc',
   borderColor: '#333333',
@@ -106,8 +104,7 @@ export const defaultConfig: ThemeConfig = {
 
 export function generateTheme(config: ThemeConfig): AppTheme {
   const { 
-    primaryHue, 
-    primarySaturation, 
+    primaryColor,
     spacingUnit, 
     baseFontSize, 
     radiusScale,
@@ -128,7 +125,7 @@ export function generateTheme(config: ThemeConfig): AppTheme {
   
   return {
     colors: {
-      primary: `hsl(${primaryHue}, ${primarySaturation}%, 50%)`,
+      primary: primaryColor,
       background: config.backgroundColor,
       text: config.textColor,
       border: config.borderColor,

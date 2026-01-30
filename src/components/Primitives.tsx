@@ -148,18 +148,18 @@ export const ListItem = styled.li`
 // 4. LINKS
 // ============================================================================
 
-const linkStyles = `
-  color: hsl(210, 100%, 60%);
+const linkStyles = (props: any) => `
+  color: ${props.theme.colors.primary};
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
   
   &:hover {
-    border-bottom-color: hsl(210, 100%, 60%);
+    border-bottom-color: ${props.theme.colors.primary};
   }
   
   &:visited {
-    color: hsl(210, 100%, 60%);
+    color: ${props.theme.colors.primary};
   }
 `;
 
@@ -202,7 +202,7 @@ export const Code = styled.code`
   border-left: 2px solid ${props => props.theme.colors.primary}33;
   border-radius: ${props => props.theme.radii.small};
   padding: 0.15em 0.4em 0.15em 0.35em;
-  color: hsl(210, 100%, 60%);
+  color: ${props => props.theme.colors.primary};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 `;
 
@@ -215,7 +215,7 @@ export const Code = styled.code`
 export const Blockquote = styled.blockquote`
   margin: ${props => props.theme.spacing.lg} 0;
   padding-left: ${props => props.theme.spacing.md};
-  border-left: 4px solid ${props => props.theme.colors.primary};
+  border-left: 4px solid hsl(210, 100%, 25%);
   color: ${props => props.theme.colors.text};
   font-style: italic;
   
