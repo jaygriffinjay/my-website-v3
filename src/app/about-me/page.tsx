@@ -120,6 +120,11 @@ export default function AboutMePage() {
               borderRadius: '8px',
               marginBottom: '1.5rem'
             }} 
+            css={{
+              '@media (max-width: 768px)': {
+                marginTop: '3rem'
+              }
+            }}
           />
           <HiringText>
             I'm currently seeking full-time roles building modern web and React-based applications! I'm especially interested in AI integrations and building AI-native apps.

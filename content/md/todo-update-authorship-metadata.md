@@ -160,7 +160,6 @@ authorshipNote: 'AI-assisted.', // Minimal disclosure, framework documented else
 3. **Fix everything at once or phase it in?**
    - All at once: Consistent immediately, but tedious manually
    - Phased: Fix high-visibility posts now, bulk-edit the rest with metadata editor later
-   - Recommendation: **Wait for metadata editor** unless job applications require fixing soon
 
 ## Why This Matters
 
@@ -176,9 +175,3 @@ Doing this manually now is painful, but that pain validates building the tool.
 - [Feature Spec: Metadata Editor](#) (not yet created)
 - [AI Workflow Transparency](ai-workflow-transparency.md)
 - [About Authorship](about-authorship.tsx)
-
-## Timeline
-
-**Ideal:** Wait until metadata editor exists (1-2 weeks), then do this in 5 minutes.
-
-**Pragmatic:** If needed sooner (e.g., for job applications where current authorship notes seem weird), do manually for high-visibility posts (About pages, main blog posts) and defer the rest.

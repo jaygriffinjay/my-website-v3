@@ -96,7 +96,7 @@ When I'm writing, I don't see `**bold**`. I want to see bold text.
 
 ## Where Obsidian Gets It Wrong
 
-Obsidian fetishizes the wrong part of markdown.
+Obsidian Obsesses over the wrong part of markdown.
 
 ### ❌ **Problem 1: Syntax Visibility**
 
@@ -224,7 +224,7 @@ This doesn't exist yet as a good tool, so we're building it.
 
 ---
 
-## The Pattern: People Fetishize the Wrong Thing
+## The Pattern: People Obsess Over the Wrong Thing
 
 This is the same mistake as Tailwind.
 
