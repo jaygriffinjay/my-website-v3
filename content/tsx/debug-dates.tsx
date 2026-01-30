@@ -1,12 +1,16 @@
 import type { PostMeta } from '@/types/post';
 import { getAllPosts, getAllDocs, getAllAppRoutes } from '@/lib/posts';
+import { Heading, Paragraph, Code } from '@/components/Primitives';
 
 export const metadata: PostMeta = {
   title: 'Debug: Date Analysis',
   slug: 'debug-dates',
-  date: '2026-01-30T00:00:00Z',
-  description: 'Debug page to analyze all content dates',
-  tags: ['debug'],
+  date: '2026-01-30T12:00:00Z',
+  author: ['Claude Sonnet 4.5', 'Jay Griffin'],
+  authorshipNote: 'Claude built this debug tool to solve the invalid date bug',
+  description: 'Comprehensive debugging tool for inspecting content metadata dates. Created to diagnose and fix the "invalid date" bug on the homepage.',
+  tags: ['debug', 'tools', 'dates', 'metadata', 'troubleshooting'],
+  type: 'doc',
 };
 
 // Server component that loads and displays all dates
@@ -28,11 +32,40 @@ export default async function DebugDates() {
   });
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto', fontFamily: 'monospace' }}>
-      <h1 style={{ color: 'white' }}>🔍 Full Date Data Dump</h1>
-      <p style={{ color: 'white' }}>Total content items: {allContent.length}</p>
-      
-      <div style={{ marginTop: '2rem' }}>
+    <>
+      <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto', fontFamily: 'system-ui', marginBottom: '3rem', background: 'rgba(100, 100, 100, 0.2)', borderRadius: '8px', border: '1px solid #555' }}>
+        <Heading level={2}>🐛 The Invalid Date Bug</Heading>
+        
+        <Paragraph>
+          <strong>Problem:</strong> An "invalid date" was appearing on the homepage content listings, but we couldn't identify which content item had the malformed date.
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>Root Cause:</strong> The <Code>getAllAppRoutes()</Code> function in <Code>src/lib/posts.ts</Code> was attempting to dynamically import all app route pages to extract their <Code>routeMetadata</Code>. However, the about-me page uses the <Code>'use client'</Code> directive because it requires Emotion styled-components.
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>Why It Failed:</strong> Client components cannot be imported in server-side code. When Next.js tried to import the about-me client component during server-side rendering, the import failed silently or returned malformed data, resulting in an invalid date object being passed to <Code>new Date()</Code>.
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>The Fix:</strong> Updated <Code>getAllAppRoutes()</Code> to check if a file starts with <Code>'use client'</Code> before attempting to import it. Client components are now skipped during the app route scan, preventing the import error.
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>Side Note:</strong> During investigation, I also found and fixed a malformed date in <Code>codeblock-showcase.tsx</Code> (was using <Code>'2026-01-19'</Code> instead of the full ISO 8601 format <Code>'2026-01-19T00:00:00Z'</Code>).
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>What This Page Does:</strong> This debug tool loads all content from posts, docs, and app routes, then displays each item's metadata with clear visual indicators for valid vs invalid dates. Items with invalid dates appear at the top with red highlighting.
+        </Paragraph>
+      </div>
+
+      <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto', fontFamily: 'monospace' }}>
+        <h1 style={{ color: 'white' }}>🔍 Full Date Data Dump</h1>
+        <p style={{ color: 'white' }}>Total content items: {allContent.length}</p>
+        
+        <div style={{ marginTop: '2rem' }}>
         {sorted.map((item, index) => {
           const dateObj = new Date(item.metadata.date);
           const isInvalid = isNaN(dateObj.getTime());
@@ -90,6 +123,7 @@ export default async function DebugDates() {
           );
         })}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
