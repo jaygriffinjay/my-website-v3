@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { css, keyframes } from '@emotion/react';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Sekuya } from 'next/font/google';
 import Navigator from './Navigator';
 import { NavMenu } from './NavMenu';
@@ -107,10 +107,8 @@ interface NavBarProps {
 export default function NavBar({ routes }: NavBarProps) {
   const { theme } = useTheme();
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; tx: number; ty: number }>>([]);
-  const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const particleIdRef = useRef(0);
-  const navigatorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -147,37 +145,6 @@ export default function NavBar({ routes }: NavBarProps) {
     }
   };
 
-  // Close navigator on click outside
-  useEffect(() => {
-    if (!isNavigatorOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navigatorRef.current && !navigatorRef.current.contains(event.target as Node)) {
-        setIsNavigatorOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsNavigatorOpen(false);
-      }
-    };
-
-    const handleScroll = () => {
-      setIsNavigatorOpen(false);
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isNavigatorOpen]);
-
   return (
     <nav css={navBarStyles}>
       <NavMenu />
@@ -203,22 +170,7 @@ export default function NavBar({ routes }: NavBarProps) {
           />
         ))}
       </div>
-      <div ref={navigatorRef} css={{ position: 'relative' }}>
-        <button
-          css={navigatorIconStyles}
-          onClick={() => setIsNavigatorOpen(!isNavigatorOpen)}
-          title="Navigator"
-          aria-label="Toggle Navigator"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </button>
-        {isNavigatorOpen && (
-          <Navigator routes={routes} onClose={() => setIsNavigatorOpen(false)} />
-        )}
-      </div>
+      <Navigator routes={routes} />
     </nav>
   );
 }

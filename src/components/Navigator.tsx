@@ -1,119 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { css } from '@emotion/react';
 import { useState, useMemo } from 'react';
 import type { RouteEntry } from '@/lib/routes';
 import { useTheme } from '@/theme/theme';
-
-const navigatorStyles = css({
-  position: 'absolute',
-  top: 'calc(100% + 8px)',
-  right: 0,
-  width: '400px',
-  maxHeight: '500px',
-  backgroundColor: 'rgba(20, 20, 30, 0.95)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '12px',
-  padding: '1rem',
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.75rem',
-  zIndex: 9999,
-  '@media (max-width: 768px)': {
-    position: 'fixed',
-    top: '80px',
-    left: '1rem',
-    right: '1rem',
-    width: 'auto',
-    maxWidth: '400px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    transform: 'none',
-  },
-});
-
-const searchInputStyles = (primaryColor: string) => css({
-  width: '100%',
-  padding: '0.75rem',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '8px',
-  color: '#fff',
-  fontSize: '1rem',
-  outline: 'none',
-  '&:focus': {
-    borderColor: primaryColor,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-  },
-  '&::placeholder': {
-    color: 'rgba(255, 255, 255, 0.4)',
-  },
-});
-
-const resultsContainerStyles = (primaryColor: string, hoverColor: string) => css({
-  overflowY: 'auto',
-  maxHeight: '400px',
-  '&::-webkit-scrollbar': {
-    width: '8px',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: 'transparent',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    background: primaryColor,
-    borderRadius: '4px',
-  },
-  '&::-webkit-scrollbar-thumb:hover': {
-    background: hoverColor,
-  },
-});
-
-const routeItemStyles = css({
-  display: 'block',
-  padding: '0.75rem',
-  borderRadius: '8px',
-  textDecoration: 'none',
-  marginBottom: '0.5rem',
-  transition: 'background-color 0.2s ease',
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  },
-  '&:last-child': {
-    marginBottom: 0,
-  },
-});
-
-const routeTitleStyles = css({
-  color: '#fff',
-  fontSize: '1rem',
-  fontWeight: 600,
-  marginBottom: '0.25rem',
-});
-
-const routePathStyles = css({
-  fontSize: '0.875rem',
-  color: 'rgba(255, 255, 255, 0.5)',
-  fontFamily: 'monospace',
-});
-
-const routeDescriptionStyles = css({
-  color: 'rgba(255, 255, 255, 0.7)',
-  fontSize: '0.875rem',
-  marginTop: '0.25rem',
-  lineHeight: 1.4,
-});
+import * as Popover from '@radix-ui/react-popover';
 
 interface NavigatorProps {
   routes: RouteEntry[];
-  onClose: () => void;
 }
 
-export default function Navigator({ routes, onClose }: NavigatorProps) {
+export default function Navigator({ routes }: NavigatorProps) {
   const { theme } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
+  const [open, setOpen] = useState(false);
 
   const filteredRoutes = useMemo(() => {
     if (!searchQuery.trim()) return routes;
@@ -131,36 +31,146 @@ export default function Navigator({ routes, onClose }: NavigatorProps) {
     });
   }, [routes, searchQuery]);
 
+  const triggerStyles = {
+    all: 'unset' as const,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
+    borderRadius: theme.radii.medium,
+    cursor: 'pointer',
+    color: theme.colors.text,
+    transition: 'background-color 0.15s ease',
+    '&:hover': {
+      backgroundColor: theme.colors.border,
+    },
+    '&:focus-visible': {
+      outline: `2px solid ${theme.colors.primary}`,
+      outlineOffset: 2,
+    },
+  };
+
+  const contentStyles = {
+    width: '400px',
+    maxHeight: '500px',
+    backgroundColor: theme.colors.background,
+    border: `1px solid ${theme.colors.border}`,
+    borderRadius: '12px',
+    padding: '1rem',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.75rem',
+    zIndex: 9999,
+  };
+
+  const searchInputStyles = {
+    width: '100%',
+    padding: '0.75rem',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '8px',
+    color: '#fff',
+    fontSize: '1rem',
+    outline: 'none',
+    '&:focus': {
+      borderColor: theme.colors.primary,
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    },
+    '&::placeholder': {
+      color: 'rgba(255, 255, 255, 0.4)',
+    },
+  };
+
+  const resultsContainerStyles = {
+    overflowY: 'auto' as const,
+    maxHeight: '400px',
+    '&::-webkit-scrollbar': {
+      width: '8px',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'transparent',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: theme.colors.primary,
+      borderRadius: '4px',
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: theme.colors.hover,
+    },
+  };
+
+  const routeItemStyles = {
+    display: 'block',
+    padding: '0.75rem',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    marginBottom: '0.5rem',
+    transition: 'background-color 0.2s ease',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    },
+    '&:last-child': {
+      marginBottom: 0,
+    },
+  };
+
+  const routeTitleStyles = {
+    color: '#fff',
+    fontSize: '1rem',
+    fontWeight: 600,
+    marginBottom: '0.25rem',
+  };
+
+  const routeDescriptionStyles = {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: '0.875rem',
+    marginTop: '0.25rem',
+    lineHeight: 1.4,
+  };
+
   return (
-    <div css={navigatorStyles}>
-      <input
-        type="text"
-        placeholder="Search pages..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        css={searchInputStyles(theme.colors.primary)}
-      />
-      <div css={resultsContainerStyles(theme.colors.primary, theme.colors.hover)}>
-        {filteredRoutes.length === 0 ? (
-          <div css={{ color: 'rgba(255, 255, 255, 0.5)', padding: '1rem', textAlign: 'center' }}>
-            No routes found
+    <Popover.Root open={open} onOpenChange={setOpen}>
+      <Popover.Trigger css={triggerStyles} aria-label="Toggle Navigator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </Popover.Trigger>
+
+      <Popover.Portal>
+        <Popover.Content css={contentStyles} align="end" sideOffset={8}>
+          <input
+            type="text"
+            placeholder="Search pages..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            css={searchInputStyles}
+          />
+          <div css={resultsContainerStyles}>
+            {filteredRoutes.length === 0 ? (
+              <div style={{ color: 'rgba(255, 255, 255, 0.5)', padding: '1rem', textAlign: 'center' }}>
+                No routes found
+              </div>
+            ) : (
+              filteredRoutes.map((route) => (
+                <Link
+                  key={route.path}
+                  href={route.path}
+                  css={routeItemStyles}
+                  onClick={() => setOpen(false)}
+                >
+                  <div css={routeTitleStyles}>{route.title}</div>
+                  {route.description && (
+                    <div css={routeDescriptionStyles}>{route.description}</div>
+                  )}
+                </Link>
+              ))
+            )}
           </div>
-        ) : (
-          filteredRoutes.map((route) => (
-            <Link
-              key={route.path}
-              href={route.path}
-              css={routeItemStyles}
-              onClick={onClose}
-            >
-              <div css={routeTitleStyles}>{route.title}</div>
-              {route.description && (
-                <div css={routeDescriptionStyles}>{route.description}</div>
-              )}
-            </Link>
-          ))
-        )}
-      </div>
-    </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }
