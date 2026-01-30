@@ -3,13 +3,13 @@ import { CodeBlock } from '@/components/CodeBlock/CodeBlock';
 import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
-  title: 'Structured Outputs: AI as API',
+  title: 'Structured Outputs: AI as JSON API for Decisionmaking',
   slug: 'structured-outputs',
   date: '2026-01-27T00:00:00Z',
   author: ['Jay Griffin', 'Claude Sonnet 4.5'],
   authorshipNote: '🔧 AI-Assisted - Jay\'s explanation, Claude wrote it',
   type: 'post',
-  description: 'Why constraining AI to return structured JSON schemas separates probabilistic thinking from deterministic execution',
+  description: 'Separating probabilistic thinking from deterministic execution',
   tags: ['ai', 'structured-outputs', 'json-schema', 'architecture', 'llm'],
 };
 
@@ -23,12 +23,8 @@ export default function StructuredOutputs() {
       </Paragraph>
 
       <Paragraph>
-        Then your deterministic code parses that JSON and executes the appropriate actions.
-      </Paragraph>
+        Then your deterministic code parses that JSON and executes the appropriate actions. This is what OpenAI calls "structured outputs"
 
-      <Paragraph>
-        This is what OpenAI calls "structured outputs" - but the real insight is deeper: 
-        you're treating <strong>AI as an API</strong> with a schema contract.
       </Paragraph>
 
       <Heading level={2}>Why It Works</Heading>

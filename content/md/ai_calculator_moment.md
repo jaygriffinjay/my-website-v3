@@ -1,6 +1,6 @@
 ---json
 {
-  "title": "The Calculator Moment: AI as a Universal Tool Amplifier",
+  "title": "The Calculator Moment: AI as a Universal Information Innovation",
   "slug": "ai-calculator-moment",
   "date": "2026-01-30T00:00:00Z",
   "author": ["Jay Griffin", "Claude Sonnet 4.5"],
@@ -13,7 +13,7 @@
 
 ## What AI Actually Is
 
-AI is first and foremost just a "new" way to analyze and synthesize data. Any domain that can make use of better data analysis has probably been improved by AI. Which, by definition, is almost every single domain.
+AI is first and foremost just a "newly ubiquitous" way to analyze and synthesize data. Any domain that can make use of better data analysis has probably been improved by AI. Which, by definition, is almost every single domain.
 
 AI is a collection of techniques and tools to do data work better. But now that it has everyone's attention, it's getting applied to pretty much everything, and it turns out it's quite helpful in many, many applications.
 

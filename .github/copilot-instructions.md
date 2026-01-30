@@ -88,6 +88,9 @@ import { Heading, Paragraph, CodeBlock } from '@/components/Primitives'; // Code
 
 - **Do Not Invent Components**: Avoid creating new components unless explicitly instructed to do so. Focus on reusing and extending existing components wherever possible.
 - **Follow Existing Patterns**: Adhere to the established file structure, naming conventions, and coding styles present in the codebase.
+- **Content Voice and Tense**: When generating content (posts, docs, articles), use first-person voice (I/my/me) as if the user is speaking to their audience. Do NOT use second-person (you/your) as if speaking to the user. The content should read as the user's perspective shared with readers, not instructions or advice directed at the user.
+  - **Correct**: "I'm building a control system..." "My approach is..." "This is what I learned..."
+  - **Incorrect**: "You should build a control system..." "Your approach..." "This is what you'll learn..."
 - **Rich Metadata for Content Pages**: When generating content files in `content/tsx/`, you are typically the first author. Add thoughtful, rich metadata to the `PostMeta` export:
   - Use descriptive, accurate `title` values
   - Add relevant `tags` array (e.g., `['dev', 'components']`, `['design', 'ux']`, `['git', 'workflow']`)
