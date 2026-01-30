@@ -6,6 +6,7 @@ import type { PostMeta } from '@/types/post';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
+import Image from 'next/image';
 
 export const routeMetadata: PostMeta = {
   title: 'About Me',
@@ -110,12 +111,15 @@ export default function AboutMePage() {
               <SiLinkedin />
             </a>
           </ProfileLinks>
-          <img 
+          <Image 
             src="/images/me.jpg" 
             alt="Jay Griffin" 
+            width={250}
+            height={250}
+            priority
             style={{ 
-              maxWidth: '250px', 
-              width: '100%', 
+              width: '100%',
+              maxWidth: '250px',
               height: 'auto',
               borderRadius: '8px',
               marginBottom: '1.5rem'
