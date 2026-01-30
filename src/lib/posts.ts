@@ -143,6 +143,14 @@ export async function getAllAppRoutes(): Promise<Post[]> {
   // Import each page and check for routeMetadata
   for (const pagePath of pageFiles) {
     try {
+      const fullFilePath = path.join(appDir, pagePath);
+      const fileContent = fs.readFileSync(fullFilePath, 'utf-8');
+      
+      // Skip client components - they can't be imported server-side
+      const isClientComponent = fileContent.trimStart().startsWith("'use client'") || 
+                               fileContent.trimStart().startsWith('"use client"');
+      if (isClientComponent) continue;
+      
       // Convert path to URL path: "metadata-scanner/page.tsx" -> "/metadata-scanner"
       const urlPath = '/' + pagePath.replace('/page.tsx', '').replace('page.tsx', '');
       

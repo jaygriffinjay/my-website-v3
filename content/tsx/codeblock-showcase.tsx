@@ -4,10 +4,11 @@ import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
   title: 'CodeBlock Component Showcase',
-  date: '2026-01-21',
+  date: '2026-01-21T00:00:00Z',
   slug: 'codeblock-showcase',
   tags: ['dev', 'components'],
   description: 'Testing and showcasing all CodeBlock component configurations',
+  author: ['Jay Griffin'],
 };
 
 export default function CodeBlockShowcase() {

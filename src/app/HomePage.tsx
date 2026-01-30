@@ -67,8 +67,11 @@ export function HomePage({ allContent }: HomePageProps) {
                   : `/posts/${item.metadata.slug}`
               );
               
+              // Create unique key combining slug with type/path
+              const uniqueKey = item.metadata.path || `${item.metadata.type || 'post'}-${item.metadata.slug}`;
+              
               return (
-                <ListItem key={item.metadata.slug} css={{ marginBottom: '0.5rem' }}>
+                <ListItem key={uniqueKey} css={{ marginBottom: '0.5rem' }}>
                   <Link 
                     href={href}
                     css={{ 
