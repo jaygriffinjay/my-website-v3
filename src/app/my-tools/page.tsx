@@ -55,7 +55,15 @@ export default function MyToolsPage() {
         </Paragraph>
         
         <Paragraph>
-          <strong>GitHub Copilot, Claude Code</strong> - AI Assistance
+          <strong>GitHub Copilot, Claude Code</strong> - AI coding assistants integrated into VS Code. Claude Sonnet 4.5 for most general work, Claude Opus 4.5 for tough problems, and GPT-4o for natural language editing (no code generation).
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>OpenAI API</strong> - For integrating AI capabilities directly into software applications
+        </Paragraph>
+        
+        <Paragraph>
+          <strong>Claude, ChatGPT</strong> - For general questions and code snippets using daily free tier
         </Paragraph>
         
         <Paragraph>

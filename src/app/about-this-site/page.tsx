@@ -20,21 +20,30 @@ export default function AboutThisSite() {
     <Container size="sm">
       <ContentWrapper>
         <Heading level={1}>{routeMetadata.title}</Heading>
+      
       <Paragraph>
-        This is a personal website built from scratch to work exactly how I want it to work. 
-        A place for documenting my work, my thoughts, and anything I find interesting.
+        This is my personal website, built from scratch as both a publishing platform and a development workspace. 
+        It's where I document my work, share my thoughts, and build web applications.
+      </Paragraph>
+
+      <Heading level={2}>What I Built</Heading>
+
+      <Paragraph>
+        On the surface, this looks like a standard personal website. Under the hood, it's a full-stack 
+        framework for rapidly building and shipping web applications. The site itself is the primary 
+        application, but it also serves as a container for other projects.
       </Paragraph>
 
       <Paragraph>
-        This site isn't just for personal publishing—I do my actual web development work here. 
-        While it's a website in the traditional sense, it's also a full-stack framework I've built 
-        for making web applications quickly and efficiently.
+        When I build a new app I can rebuild it 
+        within this repo, leverage the existing tooling and component system, and host it directly on 
+        the site. The framework makes each new project faster and better than building standalone.
       </Paragraph>
 
       <Heading level={2}>The Tech Stack</Heading>
 
       <Paragraph>
-        The stack used to make this site is the result of years of experimentation on this very project. I've rebuilt it 
+        The stack is the result of years of experimentation on this project. I've rebuilt it 
         multiple times, trying different approaches until I landed on what actually works for me.
       </Paragraph>
 
@@ -43,8 +52,8 @@ export default function AboutThisSite() {
       </Paragraph>
       <List>
         <ListItem><strong>Next.js and React</strong> - full-stack web application framework</ListItem>
-        <ListItem><strong>TypeScript</strong> - in my opinion the best language to use for web development and programming with AI</ListItem>
-        <ListItem><strong>Emotion</strong> - CSS-in-JS for programmable CSS</ListItem>
+        <ListItem><strong>TypeScript</strong> - my language of choice</ListItem>
+        <ListItem><strong>Emotion</strong> - CSS-in-JS - my styling of choice</ListItem>
       </List>
 
       <Paragraph>
@@ -62,7 +71,6 @@ export default function AboutThisSite() {
       <List>
         <ListItem><strong>Metadata Scanner</strong> - Audits all content for completeness</ListItem>
         <ListItem><strong>Theme Editor</strong> - Live design system adjustments</ListItem>
-        <ListItem><strong>Hot Reload</strong> - Instant feedback during development</ListItem>
       </List>
 
       <Paragraph>
@@ -85,8 +93,8 @@ export default function AboutThisSite() {
       </List>
 
       <Paragraph>
-        Hosting static sites is incredibly cheap and efficient. Full-stack apps need more attention 
-        to serverless and edge function usage, but for a personal site like this, the free tier 
+        Hosting static sites is often free. For my site specifically, being a Next.js app hosted on Vercel, that means I need to pay more attention 
+        to serverless and edge function usage. But for a personal site like this, the free tier 
         handles everything beautifully.
       </Paragraph>  
 
@@ -97,8 +105,8 @@ export default function AboutThisSite() {
       </Paragraph>
 
       <Paragraph>
-        More practically: I needed a cross between a personal knowledge management system, a development blog and workspace, a regular blog, and a documentation site with the 
-        flexibility to evolve as needs change. Something that makes my work easier.
+        More practically: I needed a cross between a note taking app, a personal knowledge management system, a traditional blog, a place for my development tools and documentation, and a dev blog, all with the 
+        flexibility to evolve as needs change. I needed a powerful, customized tool that makes my work better.
       </Paragraph>
 
       <Heading level={2}>How it helps me develop better software</Heading>
