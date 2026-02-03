@@ -6,6 +6,7 @@ export const routeMetadata: PostMeta = {
   title: 'jaygriff.com Features',
   slug: 'features',
   date: '2026-01-27T00:00:00Z',
+  updated: '2026-02-03T00:00:00Z',
   author: 'Jay Griffin',
   type: 'doc',
   description: 'Comprehensive list of features, architecture decisions, and capabilities that make this site a powerful development platform',
@@ -47,6 +48,30 @@ export default function FeaturesDoc() {
           <ListItem><strong>Composable by Design</strong> - AI can generate beautiful pages by composing primitives without custom CSS</ListItem>
           <ListItem><strong>Fix Once, Apply Everywhere</strong> - Update Link primitive to use Next.js Link → entire site gets SPA navigation</ListItem>
           <ListItem><strong>Emotion CSS-in-JS</strong> - Dynamic styling, theme access, TypeScript support</ListItem>
+        </List>
+
+        <Heading level={3}>CodeBlock Component</Heading>
+        <Paragraph>
+          Syntax-highlighted code display with polished interactions:
+        </Paragraph>
+        <List>
+          <ListItem><strong>Multi-Language Support</strong> - TypeScript, JavaScript, React (TSX/JSX), CSS, HTML, Markdown, Bash/Shell with Prism.js</ListItem>
+          <ListItem><strong>File Icons</strong> - Language-specific icons in header (TypeScript logo, React logo, shell icon, etc.)</ListItem>
+          <ListItem><strong>Hover-Only Copy Button</strong> - Reduces visual clutter, appears smoothly on hover with crossfaded SVG icons</ListItem>
+          <ListItem><strong>Smart Copy Feedback</strong> - Checkmark persists during 2s animation even when cursor leaves, instant hide when animation completes if not hovering</ListItem>
+          <ListItem><strong>No Flash Transitions</strong> - data-copied attribute with transition:none prevents brief visibility flashes</ListItem>
+          <ListItem><strong>Custom Language Styling</strong> - Bash/shell uses terminal green, other languages get VS Code Dark+ theme</ListItem>
+        </List>
+
+        <Heading level={3}>ContentHeader with Smart Tooltips</Heading>
+        <Paragraph>
+          Metadata display with intelligent tooltip positioning:
+        </Paragraph>
+        <List>
+          <ListItem><strong>Multiple Update Dates</strong> - Supports string | string[] for pages with many edits, displays as ordered list</ListItem>
+          <ListItem><strong>Auto-Flip Positioning</strong> - Tooltips detect viewport overflow using getBoundingClientRect() and flip from above to below automatically</ListItem>
+          <ListItem><strong>Hover Delay Logic</strong> - 0.5s delay before showing prevents appearing when cursor sweeps across, 0.15s fast disappear on leave</ListItem>
+          <ListItem><strong>Authorship Notes</strong> - Optional asterisk-triggered tooltip explaining collaborative authorship or AI involvement</ListItem>
         </List>
 
         <Heading level={3}>Live Theme Editor</Heading>
@@ -113,9 +138,11 @@ export default function FeaturesDoc() {
 
         <Heading level={3}>Responsive NavBar</Heading>
         <List>
+          <ListItem><strong>Floating Pill Design</strong> - Fixed bottom positioning with rounded pill shape</ListItem>
+          <ListItem><strong>Compact Padding</strong> - Reduced spacing for sleek appearance without sacrificing usability</ListItem>
           <ListItem><strong>Custom Font</strong> - Sekuya Google Font for distinctive branding</ListItem>
           <ListItem><strong>Particle Effects</strong> - Animated particles on title hover for visual polish</ListItem>
-          <ListItem><strong>Mobile-Optimized</strong> - Responsive sizing, touch-friendly targets</ListItem>
+          <ListItem><strong>Mobile-Optimized</strong> - Responsive sizing, touch-friendly targets, Safari-compatible positioning</ListItem>
           <ListItem><strong>Navigator Integration</strong> - Quick access to all content from any page</ListItem>
         </List>
 
@@ -138,14 +165,6 @@ export default function FeaturesDoc() {
           <ListItem><strong>Immediate Preview</strong> - Hot reload on save, instant feedback loop</ListItem>
           <ListItem><strong>Git-Backed</strong> - Full version history, easy rollback, collaborative editing via PRs</ListItem>
           <ListItem><strong>Workflow Transparency</strong> - 🤖🔧✍️ badges track AI vs human authorship</ListItem>
-        </List>
-
-        <Heading level={3}>TypeScript Throughout</Heading>
-        <List>
-          <ListItem><strong>Strict Type Safety</strong> - Catch errors before runtime</ListItem>
-          <ListItem><strong>PostMeta Interface</strong> - Unified metadata schema for all content</ListItem>
-          <ListItem><strong>Theme Typing</strong> - Emotion theme types for autocomplete and validation</ListItem>
-          <ListItem><strong>Component Props</strong> - Fully typed primitive components</ListItem>
         </List>
 
         <Heading level={2}>🛠️ Infrastructure</Heading>
