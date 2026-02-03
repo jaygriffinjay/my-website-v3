@@ -204,6 +204,10 @@ export const Code = styled.code`
   padding: 0.15em 0.4em 0.15em 0.35em;
   color: ${props => props.theme.colors.primary};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 

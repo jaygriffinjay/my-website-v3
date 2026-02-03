@@ -4,11 +4,13 @@ import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
   title: 'CodeBlock Component Showcase',
-  date: '2026-01-21T00:00:00Z',
   slug: 'codeblock-showcase',
-  tags: ['dev', 'components'],
-  description: 'Testing and showcasing all CodeBlock component configurations',
+  date: '2026-01-21T00:00:00Z',
+  description: 'Testing and showcasing all CodeBlock component configurations including bash/shell support',
+  tags: ['dev', 'components', 'testing'],
+  type: 'post',
   author: ['Jay Griffin'],
+  updated: '2026-02-02T00:00:00Z',
 };
 
 export default function CodeBlockShowcase() {
@@ -95,6 +97,47 @@ module.exports = { formatDate };`}
 </html>`}
       </CodeBlock>
 
+      <Heading level={2}>Bash/Shell Scripts</Heading>
+      <Paragraph>Using language="bash":</Paragraph>
+      <CodeBlock language="bash" filename="deploy.sh">
+        {`#!/bin/bash
+
+# Deploy script
+echo "Starting deployment..."
+
+npm install
+npm run build
+
+if [ $? -eq 0 ]; then
+  echo "Build successful!"
+  npm start
+else
+  echo "Build failed!"
+  exit 1
+fi`}
+      </CodeBlock>
+
+      <Paragraph>Using language="shell":</Paragraph>
+      <CodeBlock language="shell">
+        {`# Common shell commands
+git add .
+git commit -m "feat: add new feature"
+git push origin main
+
+# Environment setup
+export NODE_ENV=production
+export PORT=3000`}
+      </CodeBlock>
+
+      <Paragraph>Using language="sh":</Paragraph>
+      <CodeBlock language="sh" filename="setup.sh">
+        {`#!/bin/sh
+# Minimal POSIX shell script
+cd /usr/local/bin
+ln -s /opt/app/cli ./app
+chmod +x ./app`}
+      </CodeBlock>
+
       <Heading level={2}>Without Filename (Language Fallback)</Heading>
       <CodeBlock language="ts">
         {`// No filename prop, should show "typescript"
@@ -119,6 +162,15 @@ Should show "text" in header`}
       <CodeBlock filename="readme.txt">
         {`Text file with no icon
 Should show filename without icon`}
+      </CodeBlock>
+
+      <Paragraph>Long bash command (word wrapping test):</Paragraph>
+      <CodeBlock language="bash">
+        {`# Really long commands
+docker run -d --name my-container --restart unless-stopped -p 8080:8080 -v /host/path:/container/path -e DATABASE_URL=postgresql://user:password@localhost:5432/dbname my-image:latest
+
+# Piped commands
+cat /var/log/syslog | grep -i error | awk '{print $1, $2, $3}' | sort | uniq -c | sort -rn | head -20`}
       </CodeBlock>
     </>
   );

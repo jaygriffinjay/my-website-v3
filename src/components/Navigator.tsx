@@ -38,6 +38,7 @@ export default function Navigator({ routes }: NavigatorProps) {
     justifyContent: 'center',
     width: 40,
     height: 40,
+    marginRight: 4,
     borderRadius: theme.radii.full,
     cursor: 'pointer',
     color: theme.colors.text,

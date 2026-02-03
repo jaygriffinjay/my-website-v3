@@ -9,6 +9,7 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-bash';
 import {
   codeBlockTheme,
   headerStyles,
@@ -43,6 +44,9 @@ const iconConfigs: Record<string, IconConfig> = {
   'html': { filename: 'html' },
   'markup': { filename: 'html' },
   'xml': { filename: 'xml' },
+  'bash': { filename: 'shell' },
+  'shell': { filename: 'shell' },
+  'sh': { filename: 'shell' },
   'default': { filename: 'default', filter: 'brightness(0) invert(1)' },
 };
 
@@ -78,6 +82,9 @@ function getDisplayName(filename: string | undefined, language: string | undefin
     'html': '.html',
     'markup': '.html',
     'xml': '.xml',
+    'bash': '.sh',
+    'shell': '.sh',
+    'sh': '.sh',
     'text': '.txt',
     'plaintext': '.txt',
     'markdown': '.md',

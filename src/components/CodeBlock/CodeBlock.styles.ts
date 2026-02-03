@@ -274,6 +274,19 @@ export const codeBlockTheme = css`
     box-shadow: inset 5px 0 0 #f7d87c;
     z-index: 0;
   }
+
+  /* Matrix green for bash/shell - no syntax highlighting */
+  pre[class*="language-bash"],
+  code[class*="language-bash"],
+  pre[class*="language-shell"],
+  code[class*="language-shell"],
+  pre[class*="language-sh"],
+  code[class*="language-sh"] {
+    color: #00cc00;    
+    .token {
+      color: #00cc00;
+    }
+  }
 `;
 
 export const headerStyles = css`
