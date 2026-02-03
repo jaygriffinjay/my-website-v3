@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import Image from 'next/image';
+// import Timeline from '@/components/Timeline';
 
 export const routeMetadata: PostMeta = {
   title: 'About Me',
@@ -29,7 +30,7 @@ const HiringCard = styled.div`
   background: ${props => props.theme.colors.background};
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: 12px;
-  padding: ${props => props.theme.spacing.xl};
+  padding: ${props => props.theme.spacing.lg};
   margin: ${props => props.theme.spacing.xl} 0;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.15);
@@ -49,26 +50,26 @@ const BigEmailLink = styled.a`
   text-decoration: none;
   background: linear-gradient(
     90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3,
-    #ff0000
+    hsl(190, 100%, 55%),
+    hsl(200, 100%, 60%),
+    hsl(210, 100%, 60%),
+    hsl(220, 100%, 55%),
+    hsl(230, 100%, 55%),
+    hsl(240, 100%, 60%),
+    hsl(220, 100%, 55%),
+    hsl(190, 100%, 55%)
   );
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 8px rgba(255, 100, 100, 0.3);
+  text-shadow: 0 4px 8px hsla(210, 100%, 60%, 0.3);
   animation: ${shimmer} 3s linear infinite;
   transition: transform 0.3s ease;
   
   &:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 8px 16px rgba(255, 100, 255, 0.5));
+    filter: drop-shadow(0 8px 16px hsla(210, 100%, 60%, 0.5));
   }
 `;
 
@@ -131,7 +132,7 @@ export default function AboutMePage() {
             }}
           />
           <HiringText>
-            I'm currently seeking full-time roles building modern web and React-based applications! I'm especially interested in AI integrations and building AI-native apps.
+            I'm currently seeking a full-time role building modern web and React-based applications!
           </HiringText>
        
              <BigEmailLink href="mailto:jay@jaygriff.com">
@@ -174,6 +175,9 @@ export default function AboutMePage() {
         I worked in public tax accounting before transitioning to software development. 
         Read the full story in <Link href="/posts/accounting-to-dev">accounting → software development?</Link>
       </Paragraph>
+
+      <Heading level={2}>My Journey</Heading>
+      {/* <Timeline /> */}
       </ContentWrapper>
     </Container>
   );

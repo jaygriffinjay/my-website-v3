@@ -111,12 +111,12 @@ export default function AboutThisSite() {
 
       <Heading level={2}>How it helps me develop better software</Heading>
       <Paragraph>
-        This website is primarily meant to help me develop better software. It's my test bed for new features, 
+        This website is primarily meant to help me develop better software. It's my testbed for new features, 
         new ideas, and anything I find interesting and worth working on.
       </Paragraph>
 
       <Paragraph>
-        The first and most obvious way is that this is a full stack web app that I maintain in production. 
+        The first and most obvious way is that this is a full-stack web app that I maintain in production. 
         The fact that the site functions at all means that I put significant work into making it do so, which 
         means I have learned a lot of things about software to get to that point.
       </Paragraph>

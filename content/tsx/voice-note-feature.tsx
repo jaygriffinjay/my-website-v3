@@ -3,67 +3,82 @@ import { CodeBlock } from '@/components/CodeBlock/CodeBlock';
 import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
-  title: 'VoiceNote Component: Human Commentary for AI-Generated Content',
-  slug: 'voice-note-feature',
+  title: 'Audio as Optional Prop: Adding Human Commentary to AI Content',
+  slug: 'audio-primitive',
   date: '2026-01-29T00:00:00Z',
+  updated: '2026-02-02T00:00:00Z',
   author: ['Jay Griffin', 'Claude Sonnet 4.5'],
-  authorshipNote: '🔧 AI-Assisted - Jay\'s vision and philosophy, Claude documented the spec',
+  authorshipNote: '🔧 AI-Assisted - Jay\'s design evolution, Claude documented the spec',
   type: 'doc',
-  description: 'Feature specification for inline voice commentary component - a new content paradigm that combines AI synthesis with human curation',
-  tags: ['feature-spec', 'voice-notes', 'ai-content', 'primitives', 'audio', 'transparency', 'innovation'],
+  description: 'Feature spec for audio as optional prop on content primitives - attach human commentary to any component',
+  tags: ['feature-spec', 'audio', 'ai-content', 'primitives', 'design-systems', 'transparency'],
 };
 
-export default function VoiceNoteFeature() {
+export default function AudioPrimitive() {
   return (
     <>
-      <Heading level={2}>Philosophy: Why This Matters</Heading>
+      <Heading level={2}>The Problem</Heading>
 
       <Paragraph>
-        Everyone's sleeping on the real value of AI-generated content. They think "AI generated it so it's low quality text slop."
+        I'm generating a lot of AI-assisted content now—articles, documentation, feature specs—all written in my IDE 
+        with AI coding assistants. (See <Link href="/posts/why-i-write-in-my-ide">Why I Write Everything in My IDE Now</Link> for the full workflow.)
       </Paragraph>
 
       <Paragraph>
-        But here's what they're missing: <strong>AI can synthesize and brainstorm and connect ideas at a scale humans can't.</strong> It's an 
-        absolutely insane writing engine that, when guided properly, helps create genuinely interesting content.
+        The velocity is amazing, but it creates a new problem: readers encounter AI-synthesized content and may want to know 
+        <strong> why I thought it was worth creating</strong>. Audio commentary can help with this—adding human context, reasoning, 
+        and transparency without slowing down the creation loop.
       </Paragraph>
 
-      <Heading level={3}>The Real Innovation</Heading>
+      <Heading level={2}>Evolution: From VoiceNote Component to Audio as Optional Prop</Heading>
 
       <Paragraph>
-        The innovation isn't "AI wrote this." The innovation is <strong>combining AI synthesis with human reasoning about why it matters.</strong> It's <strong>bringing the humanity back in</strong> - showing the reasoning, the "why this exists," the curation decisions.
+        Initially, I imagined a standalone <Code>VoiceNote</Code> component—a special callout box with audio player and transcript. 
+        Like a blockquote but with voice.
       </Paragraph>
 
-      <List>
-        <ListItem><strong>AI is the synthesis engine</strong> - Brainstorming, connecting ideas, bouncing concepts back and forth</ListItem>
-        <ListItem><strong>Human voice reveals the process</strong> - "Why I curated this," "Why this matters to me," "What made this worth creating"</ListItem>
-      </List>
-
       <Paragraph>
-        When someone comes across AI-generated work, they don't need help understanding it. They want to know <strong>why they should care</strong>.
-      </Paragraph>
-
-      <Heading level={3}>What This Content Actually Represents</Heading>
-
-      <Paragraph>
-        Take this feature spec as an example. The AI-generated text represents:
+        But then I realized: <strong>audio isn't a content type, it's metadata</strong>. I don't want to insert special 
+        "voice note boxes" that interrupt the flow. I want to attach audio to the content that already exists.
       </Paragraph>
 
       <List>
-        <ListItem>Me brainstorming with AI, bouncing ideas back and forth</ListItem>
-        <ListItem>Getting new insights I wouldn't have reached alone</ListItem>
-        <ListItem>Coming up with something genuinely novel</ListItem>
-        <ListItem>Trying to detail it, document it, and get it shipped</ListItem>
+        <ListItem><Code>&lt;CodeBlock audio="..."&gt;</Code> - "Here's what this code does"</ListItem>
+        <ListItem><Code>&lt;Heading audio="..."&gt;</Code> - "Here's what this section is about"</ListItem>
       </List>
 
       <Paragraph>
-        Voice notes let me explain: "Here's why this clicked," "This is the moment it became real," "This trade-off matters because..."
+        This is better because:
       </Paragraph>
+
+      <List>
+        <ListItem><strong>Semantic integrity</strong> - Headings stay headings, code stays code</ListItem>
+        <ListItem><strong>Natural breakpoints</strong> - Audio at headings acts like chapter markers</ListItem>
+        <ListItem><strong>No flow interruption</strong> - Audio enhances existing content, doesn't fragment it</ListItem>
+        <ListItem><strong>Composable</strong> - Any component can have audio, not just special "voice note" components</ListItem>
+      </List>
+
+      <Paragraph>
+        So this spec evolved from "VoiceNote component" to "audio as optional prop."
+      </Paragraph>
+
+      <Heading level={2}>What Audio Commentary Provides</Heading>
+
+      <Paragraph>
+        Transparency and context:
+      </Paragraph>
+
+      <List>
+        <ListItem><strong>Process visibility</strong> - "Here's why I curated this"</ListItem>
+        <ListItem><strong>Human reasoning</strong> - "Why this matters to me"</ListItem>
+        <ListItem><strong>Decision context</strong> - "What made this worth shipping"</ListItem>
+      </List>
 
       <Paragraph>
         <strong>It's not about explaining the text. It's about explaining why the text exists and why it matters.</strong>
       </Paragraph>
 
-      <Heading level={3}>Why This Is Different</Heading>
+      <Heading level={2}>Why This Is Different</Heading>
 
       <Paragraph>
         Current content formats force you to choose:
@@ -76,57 +91,144 @@ export default function VoiceNoteFeature() {
       </List>
 
       <Paragraph>
-        <strong>VoiceNote is hybrid:</strong> AI-generated comprehensive text + inline human reasoning about why it matters. Best of both:
+        <strong>Audio is hybrid:</strong> AI-generated comprehensive text + inline human reasoning attached to specific content. Best of both:
       </Paragraph>
 
       <List>
         <ListItem>Readers get comprehensive, well-synthesized content</ListItem>
-        <ListItem>Listeners get the creator's actual voice explaining the "why"</ListItem>
         <ListItem>AI does the synthesis, human shares the reasoning and curation</ListItem>
         <ListItem>Perfect transparency workflow - clearly marked AI synthesis vs human reasoning</ListItem>
       </List>
 
+      <Heading level={2}>The Workflow Evolution</Heading>
+
+      <Heading level={3}>Phase 1: Basic Implementation</Heading>
+      <List>
+        <ListItem>Add audio props to CodeBlock and Heading components</ListItem>
+        <ListItem>Create basic AudioPlayer component</ListItem>
+        <ListItem>Record on phone, transcribe with Whisper, add audio prop manually</ListItem>
+        <ListItem>Works but has friction</ListItem>
+      </List>
+
+      <Heading level={3}>Phase 2: Friction Elimination</Heading>
+      <List>
+        <ListItem>Always-hot mic setup at desk</ListItem>
+        <ListItem>System-wide hotkey (e.g., <Code>Cmd+Shift+V</Code>) triggers recording</ListItem>
+        <ListItem>Auto-transcribes, auto-titles, drops in <Code>/content/audio/inbox/</Code></ListItem>
+        <ListItem>VSCode command to insert audio prop from inbox into current component</ListItem>
+        <ListItem>Reduces "I should record this" → actually recording from 10% to 90%</ListItem>
+      </List>
+
+      <Heading level={3}>Phase 3: Multi-Modal Composition</Heading>
+      <List>
+        <ListItem>Audio + code (explain why code is ugly)</ListItem>
+        <ListItem>Audio + images (context for screenshots)</ListItem>
+        <ListItem>Audio + debug visualizations (thought vs reality)</ListItem>
+        <ListItem>Multiple audio clips per page for different sections</ListItem>
+        <ListItem>Threading for longer explanations across components</ListItem>
+      </List>
+
+      <Heading level={3}>Phase 4: Content Modes</Heading>
+      <List>
+        <ListItem><strong>Read Mode</strong> - Text only, no audio</ListItem>
+        <ListItem><strong>Commentary Mode</strong> - All audio players visible</ListItem>
+        <ListItem><strong>Audio Tour Mode</strong> - Auto-plays audio as you scroll</ListItem>
+        <ListItem>Lets different users consume content their way</ListItem>
+      </List>
+
+      <Heading level={2}>The "Director's Commentary" Track</Heading>
+
       <Paragraph>
-        Nobody else is doing "AI-synthesized content with inline creator reasoning about why it exists." This is a genuinely new content paradigm.
+        Every article could have a toggle at the top to switch between consumption modes:
       </Paragraph>
+
+      <List>
+        <ListItem><strong>[📄 Read Mode]</strong> - Just the text, no audio</ListItem>
+        <ListItem><strong>[🎙️ Commentary Mode]</strong> - Shows all audio players</ListItem>
+        <ListItem><strong>[▶️ Audio Tour Mode]</strong> - Auto-plays audio as you scroll past components</ListItem>
+      </List>
+
+      <Paragraph>
+        This lets different users consume the content differently:
+      </Paragraph>
+
+      <List>
+        <ListItem><strong>Speed readers:</strong> Text only</ListItem>
+        <ListItem><strong>Deep learners:</strong> Commentary mode</ListItem>
+        <ListItem><strong>Multitaskers:</strong> Audio tour (listen while doing dishes)</ListItem>
+      </List>
 
       <Heading level={2}>Component Specification</Heading>
 
-      <Heading level={3}>Basic Usage</Heading>
+      <Heading level={3}>Audio on CodeBlock</Heading>
 
       <CodeBlock language="tsx">
-{`<VoiceNote audio="/audio/schema-insight.mp3" duration="0:45">
-  Just wanted to jump in here - this part about schemas is what really clicked 
-  for me. When I realized you could encode "how to think" in the schema 
-  descriptions, not just validate data structure, that completely changed how 
-  I approached the whole system.
-</VoiceNote>`}
+{`<CodeBlock 
+  language="typescript" 
+  audio="/audio/why-this-code.mp3"
+  audioDuration="0:45"
+>
+  {codeString}
+</CodeBlock>`}
       </CodeBlock>
 
-      <Heading level={3}>Props Interface</Heading>
+      <Paragraph>
+        Audio player appears inline with the code block. When played, provides context about implementation decisions, 
+        trade-offs, or "why this code is ugly but necessary."
+      </Paragraph>
+
+      <Heading level={3}>Audio on Heading</Heading>
+
+      <CodeBlock language="tsx">
+{`<Heading 
+  level={2} 
+  audio="/audio/section-intro.mp3"
+  audioDuration="1:20"
+>
+  The Core Architecture
+</Heading>`}
+      </CodeBlock>
+
+      <Paragraph>
+        Audio player appears next to or below heading. Acts as a chapter marker—"here's what this section is about and 
+        why it matters."
+      </Paragraph>
+
+      <Heading level={3}>Shared Audio Props</Heading>
 
       <CodeBlock language="typescript">
-{`interface VoiceNoteProps {
-  audio: string;           // Path to audio file (mp3/wav/etc)
-  duration?: string;       // Display duration (e.g., "0:45", "2:30")
-  waveform?: string;       // Optional: Path to waveform image/data
-  timestamp?: string;      // Optional: When this was recorded
-  children: React.ReactNode; // Transcript text
+{`interface AudioProps {
+  audio?: string;           // Path to audio file (mp3/wav/etc)
+  audioDuration?: string;   // Display duration (e.g., "0:45", "2:30")
+  audioWaveform?: string;   // Optional: Path to waveform image/data
+  audioTranscript?: string; // Optional: Full transcript text
 }`}
       </CodeBlock>
+
+      <Paragraph>
+        These props get added to existing primitives (CodeBlock, Heading). When present, the component renders an inline 
+        audio player.
+      </Paragraph>
+
+      <Paragraph>
+        <strong>Note on audioDuration:</strong> The browser can read duration from the audio file itself once it loads. 
+        <Code>audioDuration</Code> is just an optimization for displaying the duration immediately on initial render (SSR) 
+        and preventing layout shift. It's entirely optional—you can omit it and let the player figure it out after the 
+        audio loads.
+      </Paragraph>
 
       <Heading level={3}>Visual Design</Heading>
 
       <Paragraph>
-        The component should be visually distinct from regular content to signal "Jay's voice breaking through":
+        Audio player should be minimal and integrated with existing component styling:
       </Paragraph>
 
       <List>
-        <ListItem><strong>Left border accent</strong> - Different color from blockquotes (maybe primary theme color)</ListItem>
-        <ListItem><strong>Light background tint</strong> - Subtle visual separation from main content</ListItem>
-        <ListItem><strong>Icon/label</strong> - "💬 Jay" or "✍️ Author's Note" or "🎙️" to signal voice content</ListItem>
-        <ListItem><strong>Audio player</strong> - Inline, minimal controls (play/pause, progress bar, speed control)</ListItem>
-        <ListItem><strong>Typography</strong> - Slightly different styling (maybe italic or different font weight) to distinguish from AI text</ListItem>
+        <ListItem><strong>Icon indicator</strong> - 🎙️ or speaker icon to signal audio is available</ListItem>
+        <ListItem><strong>Inline player</strong> - Appears within or adjacent to component, not as separate callout</ListItem>
+        <ListItem><strong>Minimal controls</strong> - Play/pause, progress bar, speed control, duration</ListItem>
+        <ListItem><strong>Theme integration</strong> - Uses existing theme colors and styling</ListItem>
+        <ListItem><strong>Transcript toggle</strong> - Optional: show/hide full transcript text</ListItem>
       </List>
 
       <Heading level={3}>Audio Player Features</Heading>
@@ -140,25 +242,190 @@ export default function VoiceNoteFeature() {
         <ListItem><strong>Keyboard controls</strong> - Space to play/pause, arrow keys to seek</ListItem>
       </List>
 
+      <Heading level={2}>Usage Examples</Heading>
+
+      <Heading level={3}>Audio + Code</Heading>
+
+      <CodeBlock language="tsx">
+{`<CodeBlock 
+  language="typescript" 
+  audio="/audio/why-i-hate-this-code.mp3"
+>
+  // The ugly code in question
+  function messyButNecessary() {
+    // Yeah so this function is ugly as heck, 
+    // but here's why I had to do it this way...
+  }
+</CodeBlock>`}
+      </CodeBlock>
+
+      <Heading level={3}>Audio + Section Heading</Heading>
+
+      <CodeBlock language="tsx">
+{`<Heading 
+  level={2} 
+  audio="/audio/the-key-insight.mp3"
+  audioDuration="1:15"
+>
+  The Key Innovation
+</Heading>
+
+<Paragraph>
+  [AI-generated explanation of the innovation...]
+</Paragraph>`}
+      </CodeBlock>
+
+      <Paragraph>
+        Audio provides: "This is where it clicked for me. I was stuck thinking about "X"
+        but it's actually "Y". That reframe changed everything."
+      </Paragraph>
+
       <Heading level={2}>Implementation Details</Heading>
 
-      <Heading level={3}>Phase 1: Basic Component</Heading>
+      <Paragraph>
+        Three pieces to make this work:
+      </Paragraph>
+
+      <Heading level={3}>1. Shared AudioPlayer Component</Heading>
+
+      <Paragraph>
+        A reusable <Code>&lt;AudioPlayer&gt;</Code> component that handles all playback logic:
+      </Paragraph>
 
       <List>
-        <ListItem>Create VoiceNote primitive in <Code>src/components/Primitives.tsx</Code></ListItem>
+        <ListItem>Play/pause state management</ListItem>
+        <ListItem>Progress bar with seeking</ListItem>
+        <ListItem>Playback speed controls (0.5x, 1x, 1.5x, 2x)</ListItem>
+        <ListItem>Duration display and current time</ListItem>
+        <ListItem>Keyboard shortcuts (space for play/pause, arrows for seek)</ListItem>
+        <ListItem>Optional transcript toggle</ListItem>
+      </List>
+
+      <CodeBlock language="typescript">
+{`interface AudioPlayerProps {
+  src: string;              // Path to audio file
+  duration?: string;        // Display duration
+  waveform?: string;        // Optional waveform visualization
+  transcript?: string;      // Optional transcript text
+}`}
+      </CodeBlock>
+
+      <Heading level={3}>2. Optional Audio Props on Primitives</Heading>
+
+      <Paragraph>
+        Each primitive (CodeBlock, Heading, etc.) gets extended with optional audio props:
+      </Paragraph>
+
+      <CodeBlock language="typescript">
+{`interface AudioProps {
+  audio?: string;           // Path to audio file
+  audioDuration?: string;   // Display duration
+  audioWaveform?: string;   // Optional waveform
+  audioTranscript?: string; // Optional transcript
+}
+
+// CodeBlock extends its existing props
+interface CodeBlockProps extends AudioProps {
+  language: string;
+  children: string;
+  // ...existing props
+}
+
+// Heading extends its existing props
+interface HeadingProps extends AudioProps {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  children: React.ReactNode;
+  // ...existing props
+}`}
+      </CodeBlock>
+
+      <Heading level={3}>3. Integration Per Component</Heading>
+
+      <Paragraph>
+        Each primitive decides where to render the AudioPlayer:
+      </Paragraph>
+
+      <CodeBlock language="tsx">
+{`// CodeBlock renders audio player at bottom
+export function CodeBlock({
+  audio,
+  audioDuration,
+  audioTranscript,
+  language,
+  children,
+}: CodeBlockProps) {
+  return (
+    <div>
+      <pre><code>{children}</code></pre>
+      {audio && (
+        <AudioPlayer 
+          src={audio} 
+          duration={audioDuration}
+          transcript={audioTranscript}
+        />
+      )}
+    </div>
+  );
+}
+
+// Heading renders audio player inline after text
+export function Heading({
+  audio,
+  audioDuration,
+  level,
+  children,
+}: HeadingProps) {
+  const Tag = \`h\${level}\` as keyof JSX.IntrinsicElements;
+  return (
+    <div>
+      <Tag>{children}</Tag>
+      {audio && (
+        <AudioPlayer 
+          src={audio} 
+          duration={audioDuration}
+        />
+      )}
+    </div>
+  );
+}`}
+      </CodeBlock>
+
+      <Paragraph>
+        The positioning is the only custom part—CodeBlock might put it at the bottom, Heading might put it inline. 
+        The playback logic is entirely handled by the shared AudioPlayer.
+      </Paragraph>
+
+      <Heading level={3}>Phase 1: Add Audio Props to Primitives</Heading>
+
+      <List>
+        <ListItem>Create shared AudioPlayer component in <Code>src/components/AudioPlayer/</Code></ListItem>
+        <ListItem>Add optional audio props to CodeBlock component</ListItem>
+        <ListItem>Add optional audio props to Heading primitive</ListItem>
         <ListItem>HTML5 audio element with custom controls</ListItem>
         <ListItem>Theme-integrated styling (use theme colors, spacing, radii)</ListItem>
         <ListItem>Responsive design for mobile</ListItem>
       </List>
 
-      <Heading level={3}>Phase 2: Audio Workflow</Heading>
+      <Heading level={3}>Phase 2: Always-On Recording Workflow</Heading>
+
+      <Paragraph>
+        The killer feature that makes audio commentary actually usable at scale:
+      </Paragraph>
 
       <List>
-        <ListItem><strong>Recording</strong> - Use phone voice memos or quick desktop recording</ListItem>
-        <ListItem><strong>Transcription</strong> - Run Whisper locally to generate transcript</ListItem>
-        <ListItem><strong>File management</strong> - Store audio in <Code>/public/audio/</Code></ListItem>
-        <ListItem><strong>Optimization</strong> - Compress audio files for web (target &lt;100KB for short clips)</ListItem>
+        <ListItem><strong>Global hotkey</strong> - <Code>Cmd+Shift+V</Code> triggers recording from anywhere</ListItem>
+        <ListItem><strong>Auto-transcription</strong> - Whisper runs in background, generates transcript</ListItem>
+        <ListItem><strong>Smart titling</strong> - AI generates preliminary title from first 10 words</ListItem>
+        <ListItem><strong>Inbox staging</strong> - Saves to <Code>/content/voice-notes/inbox/</Code></ListItem>
+        <ListItem><strong>File management</strong> - Moves audio to <Code>/public/audio/</Code> with proper naming</ListItem>
+        <ListItem><strong>AI categorization</strong> - Optional suggestion of which article it relates to</ListItem>
       </List>
+
+      <Paragraph>
+        <strong>Friction elimination:</strong> Current workflow is Think → Open app → Record → Save → Transcribe → File → Insert. 
+        Target workflow is Think → Hit hotkey → Talk → Done. The difference between "I should record this" and actually 
+        recording it is literally one keypress.
+      </Paragraph>
 
       <Heading level={3}>Phase 3: Enhanced Features</Heading>
 
@@ -175,42 +442,44 @@ export default function VoiceNoteFeature() {
       <Heading level={3}>1. AI-Generated Document Commentary</Heading>
 
       <Paragraph>
-        <strong>Scenario:</strong> You generate a comprehensive 5,000-word document with AI about semantic compression. 
-        You add voice notes at key sections to guide readers through your thinking.
+        <strong>Scenario:</strong> You generate a comprehensive 5,000-word document with AI about your Timeline component architecture. 
+        You add audio at key sections to guide readers through your thinking.
       </Paragraph>
 
-      <CodeBlock language="markdown">
-{`## The Key Innovation
+      <CodeBlock language="tsx">
+{`<Heading level={2} audio="/audio/aha-moment.mp3">
+  The Key Innovation
+</Heading>
 
-[AI-generated explanation of semantic compression...]
+<Paragraph>
+  [AI-generated explanation of the Timeline component...]
+</Paragraph>
 
-<VoiceNote audio="/audio/aha-moment.mp3" duration="1:15">
-This is where it clicked for me. I was stuck thinking about this as a 
-compression problem, but it's actually a control problem. That reframe 
-changed everything about how I approached the implementation.
-</VoiceNote>
-
-[More AI-generated content...]`}
+<Paragraph>
+  Audio provides: "This is where it clicked for me. I was stuck thinking 
+  about this as a layout problem, but it's actually a data structure problem. 
+  That reframe changed everything."
+</Paragraph>`}
       </CodeBlock>
 
       <Heading level={3}>2. Tutorial Walkthroughs</Heading>
 
       <Paragraph>
-        <strong>Scenario:</strong> Technical tutorial with code examples. Voice notes explain "why" decisions 
+        <strong>Scenario:</strong> Technical tutorial with code examples. Audio on CodeBlocks explains "why" decisions 
         were made, not just "what" the code does.
       </Paragraph>
 
       <Heading level={3}>3. Roadmap Context</Heading>
 
       <Paragraph>
-        <strong>Scenario:</strong> Feature roadmap document. Voice notes add personal context about priorities, 
+        <strong>Scenario:</strong> Feature roadmap document. Audio on headings adds personal context about priorities, 
         trade-offs, and decision-making process.
       </Paragraph>
 
       <Heading level={3}>4. Content Curation</Heading>
 
       <Paragraph>
-        <strong>Scenario:</strong> AI synthesizes research from multiple sources. Your voice notes add "this source 
+        <strong>Scenario:</strong> AI synthesizes research from multiple sources. Audio commentary adds "this source 
         is particularly valuable because..." or "notice how these three ideas connect..."
       </Paragraph>
 
@@ -275,28 +544,28 @@ changed everything about how I approached the implementation.
         <ListItem>"What made this worth documenting and shipping"</ListItem>
       </List>
 
-      <Heading level={3}>Step 3: Record Voice Notes</Heading>
+      <Heading level={3}>Step 3: Record Audio Commentary</Heading>
 
       <List>
         <ListItem>Open voice memos on phone or use desktop recorder</ListItem>
         <ListItem>Record spontaneously (conversational, not scripted)</ListItem>
-        <ListItem>Keep it short: 30-90 seconds per note</ListItem>
+        <ListItem>Keep it short: 30-90 seconds per clip</ListItem>
         <ListItem>Name files descriptively: <Code>schema-insight.mp3</Code>, <Code>aha-moment.mp3</Code></ListItem>
       </List>
 
-      <Heading level={3}>Step 4: Transcribe & Insert</Heading>
+      <Heading level={3}>Step 4: Transcribe & Add Audio Prop</Heading>
 
       <List>
         <ListItem>Run Whisper locally: <Code>whisper audio.mp3 --model base</Code></ListItem>
-        <ListItem>Copy transcript text</ListItem>
-        <ListItem>Insert VoiceNote component with audio path and transcript</ListItem>
-        <ListItem>Light editing of transcript for readability</ListItem>
+        <ListItem>Copy transcript text (optional, for accessibility)</ListItem>
+        <ListItem>Add audio prop to relevant component (CodeBlock or Heading)</ListItem>
+        <ListItem>Light editing of transcript for readability if included</ListItem>
       </List>
 
       <Heading level={3}>Step 5: Review & Publish</Heading>
 
       <Paragraph>
-        Listen to each voice note in context. Does it flow? Does it add value? Adjust placement or re-record if needed.
+        Listen to each audio clip in context. Does it flow? Does it add value? Adjust placement or re-record if needed.
       </Paragraph>
 
       <Heading level={2}>Success Metrics</Heading>
@@ -309,32 +578,43 @@ changed everything about how I approached the implementation.
         <ListItem><strong>Engagement:</strong> Do people actually play the audio? Track play rates.</ListItem>
         <ListItem><strong>Completion:</strong> Do they listen all the way through? Track completion rates.</ListItem>
         <ListItem><strong>Time on page:</strong> Does voice commentary increase time spent on content?</ListItem>
-        <ListItem><strong>Feedback:</strong> Direct comments about voice notes - helpful or distracting?</ListItem>
+        <ListItem><strong>Feedback:</strong> Direct comments about audio commentary - helpful or distracting?</ListItem>
         <ListItem><strong>Personal satisfaction:</strong> Does this make AI-generated content feel more authentic and valuable?</ListItem>
       </List>
 
       <Heading level={2}>Open Questions</Heading>
 
       <List>
-        <ListItem>How many voice notes per page before it becomes overwhelming?</ListItem>
-        <ListItem>Should there be a "play all voice notes sequentially" option?</ListItem>
-        <ListItem>Could voice notes be collapsible/hideable for readers who just want text?</ListItem>
-        <ListItem>Should we show a "total voice commentary time" at the top of articles?</ListItem>
-        <ListItem>What about different voice note types (insight, context, story, warning)?</ListItem>
+        <ListItem>How many audio clips per page before it becomes overwhelming?</ListItem>
+        <ListItem>Should we show a "total audio commentary time" at the top of articles?</ListItem>
+        <ListItem>How do we handle audio in article excerpts/previews?</ListItem>
+        <ListItem>Should threading support automatic numbering ("Part 1 of 3")?</ListItem>
+        <ListItem>Can audio commentary be searched/indexed for discovery?</ListItem>
+        <ListItem>What's the right UX for audio tour mode auto-play behavior?</ListItem>
+      </List>
+
+        <Heading level={2}>Ideal Future State</Heading>
+      <List>
+        <ListItem>Composable across all content types</ListItem>
+        <ListItem>Zero-friction capture workflow</ListItem>
+        <ListItem>AI handles synthesis, human adds the "why"</ListItem>
+        <ListItem>Built into the development environment itself</ListItem>
       </List>
 
       <Heading level={2}>Next Steps</Heading>
 
       <List ordered>
-        <ListItem>Build basic VoiceNote component (MVP - just audio player + transcript)</ListItem>
-        <ListItem>Test in one document (maybe this spec or the LLM SEO roadmap)</ListItem>
-        <ListItem>Record 2-3 test voice notes and insert them</ListItem>
+        <ListItem>Build basic AudioPlayer component (MVP - just play/pause + progress bar)</ListItem>
+        <ListItem>Add audio props to CodeBlock and Heading primitives</ListItem>
+        <ListItem>Test in one document (maybe this spec or a technical article)</ListItem>
+        <ListItem>Record 2-3 test audio clips and add them to components</ListItem>
         <ListItem>Get feedback (does this feel natural? does it add value?)</ListItem>
         <ListItem>Iterate on design and UX based on real usage</ListItem>
-        <ListItem>Add enhanced features (waveform, timestamps, etc.)</ListItem>
+        <ListItem>Add enhanced features (waveform, transcript toggle, etc.)</ListItem>
         <ListItem>Document the workflow for future content creation</ListItem>
-        <ListItem>Write blog post about the concept and open source it</ListItem>
+        <ListItem>Write blog post about the pattern and open source it</ListItem>
       </List>
     </>
   );
 }
+

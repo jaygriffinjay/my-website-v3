@@ -2,28 +2,28 @@ import { Heading, Paragraph, List, ListItem, Link } from '@/components/Primitive
 import type { PostMeta } from '@/types/post';
 
 export const metadata: PostMeta = {
-  title: 'Work at the Speed of Thought',
-  slug: 'work-at-the-speed-of-thought',
+  title: 'The Approve → Regenerate → Edit Loop',
+  slug: 'approve-regenerate-edit-loop',
   date: '2026-01-27T00:00:00Z',
   author: ['Jay Griffin', 'Claude Sonnet 4.5'],
   authorshipNote: '🔧 AI-Assisted - Jay\'s philosophy, Claude structured it',
   type: 'post',
-  description: 'Optimizing the AI-assisted workflow loop to remove friction between thinking and execution',
+  description: 'The fundamental AI-assisted workflow: approve output, regenerate if wrong, edit to polish. Every bit of friction you remove compounds exponentially.',
   tags: ['ai', 'workflow', 'productivity', 'natural-language', 'development'],
 };
 
-export default function WorkAtSpeedOfThought() {
+export default function ApproveRegenerateEditLoop() {
   return (
     <>
       <Heading level={2}>The Core Idea</Heading>
       <Paragraph>
         The goal isn't to manage complex AI agent swarms or orchestrate elaborate pipelines. 
-        The goal is simpler and more profound: <strong>remove all friction between thinking and execution</strong>.
+        The goal is simpler: <strong>remove all friction from the approve → regenerate → edit loop</strong>.
       </Paragraph>
       
       <Paragraph>
-        When you can think "I want this feature" and have it materialize with minimal resistance, 
-        you're working at the speed of thought. That's the frontier.
+        When you can prompt AI, evaluate the output, and approve it, regenerate it, or edit it to perfection—all with minimal 
+        resistance—you've optimized the fundamental unit of AI-assisted work.
       </Paragraph>
 
       <Heading level={2}>The Loop</Heading>
@@ -31,10 +31,10 @@ export default function WorkAtSpeedOfThought() {
         The fundamental workflow pattern:
       </Paragraph>
       <List ordered>
-        <ListItem><strong>Express intent</strong> - Natural language input describing what you want</ListItem>
-        <ListItem><strong>AI generates</strong> - AI does all the work, or as much as possible</ListItem>
-        <ListItem><strong>Review</strong> - You approve, regenerate, or make precision edits</ListItem>
-        <ListItem><strong>Ship</strong> - Changes go live immediately</ListItem>
+        <ListItem><strong>Prompt</strong> - Natural language input describing what you want. AI generates the output.</ListItem>
+        <ListItem><strong>Approve</strong> - It's correct, ship it</ListItem>
+        <ListItem><strong>Regenerate</strong> - Wrong direction, try again with more context</ListItem>
+        <ListItem><strong>Edit</strong> - 95% correct, you tweak the last 5% and ship</ListItem>
       </List>
 
       <Paragraph>
@@ -45,20 +45,23 @@ export default function WorkAtSpeedOfThought() {
       <Heading level={2}>Why Natural Language?</Heading>
       <Paragraph>
         Natural language is the ultimate input interface because it's how you already think. 
-        You don't think in JSON schemas or TypeScript interfaces—you think in concepts, goals, and constraints.
+   The old way was typing syntax into a computer in order to translate higher level commands into lower level commands in order to accomodate how a computer understands things. Now the computer accomodates you and generates all the lower level stuff for you.
       </Paragraph>
 
       <Paragraph>
         The more you can express directly in natural language, the faster you work:
       </Paragraph>
       <List>
-        <ListItem>"Add a hamburger menu with these nav items" → component exists</ListItem>
-        <ListItem>"Fix this link to use SPA navigation" → entire site upgraded</ListItem>
-        <ListItem>"Add metadata to these files" → done in seconds</ListItem>
+        <ListItem>"Make this paragraph more concise and professional" → instantly rewritten</ListItem>
+        <ListItem>"Add consistent spacing between all sections in this document" → entire layout reformatted</ListItem>
+        <ListItem>"Create a chart showing monthly sales trends" → visualization generated</ListItem>
+        <ListItem>"Summarize the key points from these 10 documents" → synthesis appears</ListItem>
+        <ListItem>"Rename all these files to use lowercase with dashes" → batch operation completes</ListItem>
       </List>
 
       <Paragraph>
-        Traditional coding requires translating thoughts into syntax. Natural language + AI removes that translation layer.
+        Whether you're writing, designing, coding, or whatever you do at your desk—natural language + AI removes the translation 
+        layer between thought and execution. The only limit is how well you can express what you want (and understanding the limitations of AI).
       </Paragraph>
 
       <Heading level={2}>The Approval/Edit Pattern</Heading>
@@ -80,54 +83,58 @@ export default function WorkAtSpeedOfThought() {
         something concrete to iterate on.
       </Paragraph>
 
-      <Heading level={2}>Systems That Enable Speed</Heading>
+      <Heading level={2}>Why This Works: Judgment vs. Generation</Heading>
+
       <Paragraph>
-        Working at the speed of thought requires infrastructure:
+        Humans are great at generating ideas. That's our work—we have an idea, we work on it. We generate the seed for an idea as we recognize patterns in the world and our brain connects dots.
       </Paragraph>
 
-      <Heading level={3}>Composable Primitives</Heading>
       <Paragraph>
-        AI can generate new pages instantly because it composes from primitives (Heading, Paragraph, List, etc.). 
-        Fix the primitive once, every page improves. See: <Link href="/posts/why-react-components-rule">Why React Components Rule</Link>.
+        The problem is <strong>propagating the seed</strong>. You have one idea and can think of maybe two or three 
+        ways to develop it. AI takes your seed and generates dozens of directions, variations, and elaborations—things 
+        you literally couldn't generate from your mind but can absolutely judge and iterate on once they exist.
       </Paragraph>
 
-      <Heading level={3}>Automatic Discovery</Heading>
       <Paragraph>
-        Drop a file, it appears on the site. No manual registration, no build config changes. 
-        The content system discovers and renders it automatically.
+        This is the real power: you're good at seeds, AI is good at proliferation, you're good at selection. 
+        You provide the spark and the curation. AI provides the explosion of possibilities in between.
       </Paragraph>
 
-      <Heading level={3}>Structured Outputs</Heading>
       <Paragraph>
-        AI returns JSON matching a schema, deterministic code applies the changes. 
-        Separates probabilistic thinking (AI) from reliable execution (code). 
-        See: <Link href="/posts/structured-outputs">Structured Outputs: AI as API</Link>.
+        Give someone a bad draft and they'll instantly see what's wrong and how to fix it. Ask them to elaborate 
+        their idea in fifteen different directions and they'll run dry after three. AI plays directly to this dynamic.
       </Paragraph>
 
-      <Heading level={3}>Version Control as Memory</Heading>
       <Paragraph>
-        Git tracks every change, so you can move fast without fear. Wrong turn? Revert. 
-        Need to remember how something worked? Check the history.
+        This is why the approve/regenerate/edit loop is so powerful—you're always evaluating and directing, never 
+        exhausting your creative bandwidth trying to manually proliferate every angle. AI generates the possibilities, 
+        your brain immediately knows which ones work. That's the division of labor.
       </Paragraph>
 
       <Heading level={2}>Current State vs. Frontier</Heading>
       <Paragraph>
-        Today: Natural language input → AI does the work → you review → instant deployment
+        <strong>Today:</strong> Natural language input → AI does the work → you revies and edit → ship it 
       </Paragraph>
       
       <Paragraph>
-        The frontier: Removing the last bits of friction from that loop. Faster review, smarter regeneration, 
-        better context injection, fewer precision edits needed.
+        <strong>The frontier:</strong> Removing the last bits of friction from that loop.
       </Paragraph>
 
+      <Heading level={3}>Faster Review</Heading>
       <Paragraph>
-        Not about adding complexity (agent swarms, elaborate pipelines). 
-        About perfecting the simplest possible workflow: think it → AI builds it → you approve it → it exists.
+        Granular approval and denial are first class citizens of this loop. Instead of approving/rejecting entire outputs, 
+        you approve specific parts and reject others in one pass.
+      </Paragraph>
+
+      <Heading level={3}>Smarter Regeneration</Heading>
+      <Paragraph>
+        Better regeneration given what was denied, improved context injection for reprompts, even more precise editing 
+        tools to make changes that can inform regeneration.
       </Paragraph>
 
       <Heading level={2}>The Constraint: Your Understanding</Heading>
       <Paragraph>
-        Here's the critical limitation that people miss when talking about agent swarms and frontier AI research:
+        Here's the critical limitation that people miss when talking about agent swarms, autonomous workflows, and vibe coding:
       </Paragraph>
       
       <Paragraph>
@@ -163,22 +170,6 @@ export default function WorkAtSpeedOfThought() {
 
       <Paragraph>
         You can't delegate understanding. The faster you want to work, the more you need to actually know.
-      </Paragraph>
-
-      <Heading level={2}>Why This Matters</Heading>
-      <Paragraph>
-        Most developer productivity advice is about typing faster, learning shortcuts, or optimizing your editor. 
-        That's optimizing the wrong thing.
-      </Paragraph>
-
-      <Paragraph>
-        The real bottleneck isn't typing—it's the gap between concept and execution. 
-        Working at the speed of thought collapses that gap entirely.
-      </Paragraph>
-
-      <Paragraph>
-        When thinking and building are the same speed, you stop choosing between ideas based on 
-        implementation effort. You choose based on which idea is actually better. That's the unlock.
       </Paragraph>
     </>
   );
