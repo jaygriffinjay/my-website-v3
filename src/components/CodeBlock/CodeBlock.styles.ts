@@ -46,7 +46,7 @@ export const codeBlockTheme = css`
     padding: 1em;
     margin: 0;
     overflow: auto !important;
-    background: #1e1e1e;
+    background: #252530;
   }
 
   :not(pre) > code[class*="language-"] {
@@ -294,8 +294,7 @@ export const headerStyles = css`
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px 8px 8px;
-  background: #2d2d2d;
-  border-bottom: 1px solid #404040;
+  background: #252530;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
   color: #9cdcfe;
