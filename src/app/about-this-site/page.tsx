@@ -36,11 +36,11 @@ export default function AboutThisSite() {
 
       <Paragraph>
         When I build a new app I can rebuild it 
-        within this repo, leverage the existing tooling and component system, and host it directly on 
+        within <Link href="https://github.com/jaygriffinjay/jaygriff">this repo</Link>, leverage the existing tooling and component system, and host it directly on 
         the site. The framework makes each new project faster and better than building standalone.
       </Paragraph>
 
-      <Heading level={2}>The Tech Stack</Heading>
+      <Heading level={2}>Tech Stack</Heading>
 
       <Paragraph>
         The stack is the result of years of experimentation on this project. I've rebuilt it 
@@ -79,7 +79,7 @@ export default function AboutThisSite() {
       <List>
         <ListItem><strong>Vercel</strong> - Deployment and hosting and analytics</ListItem>
         <ListItem><strong>Cloudflare</strong> - DNS management and email forwarding</ListItem>
-        <ListItem><strong>GitHub</strong> - Source code hosting (open source, public repo)</ListItem>
+        <ListItem><strong>GitHub</strong> - Source code hosting</ListItem>
       </List>
 
       <Paragraph>
