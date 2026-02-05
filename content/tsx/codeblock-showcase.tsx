@@ -342,30 +342,6 @@ docker run -d --name my-container --restart unless-stopped -p 8080:8080 -v /host
 # Piped commands
 cat /var/log/syslog | grep -i error | awk '{print $1, $2, $3}' | sort | uniq -c | sort -rn | head -20`}
       </CodeBlock>
-
-      <Paragraph>Shell script with extremely long strings (IDs, tokens, URLs):</Paragraph>
-      <CodeBlock language="bash" filename="configure-database.sh">
-        {`#!/bin/bash
-
-# Database configuration with very long identifiers
-export DATABASE_CONNECTION_STRING="postgresql://admin:password@prod-db-cluster.us-east-1.rds.amazonaws.com:5432/production_db"
-
-# API tokens and keys (example values)
-export API_KEY="sk_test_example_key_REDACTED"
-export OAUTH_TOKEN="EXAMPLE_TOKEN_REDACTED"
-
-# Webhook URL with query parameters
-curl -X POST "https://api.analytics-platform.example.com/v2/webhooks/event-ingestion?tenant_id=org_2AbCdEfGhIjKlMnOpQrStUvWxYz&workspace=prod_analytics_workspace_north_america_enterprise&source=application_logs&format=json&compression=gzip&batch_size=1000" \\
-  -H "Authorization: Bearer \${API_KEY}" \\
-  -H "Content-Type: application/json" \\
-  -d '{"event_type":"user_action","timestamp":"2026-02-04T12:00:00Z"}'
-
-# Database migration with long table names
-psql \${DATABASE_CONNECTION_STRING} -c "CREATE INDEX CONCURRENTLY idx_user_activity_events_aggregated_hourly_analytics_v2_timestamp_user_id ON user_activity_events_aggregated_hourly_analytics_v2 (event_timestamp DESC, user_id) WHERE deleted_at IS NULL AND is_test_data = false;"
-
-# Redis cache key patterns
-redis-cli SET "cache:session:user:a1b2c3d4-e5f6-7890-abcd-ef1234567890:preferences:notification_settings:v3" "{\\"email\\":true,\\"push\\":false}" EX 86400`}
-      </CodeBlock>
     </>
   );
 }
