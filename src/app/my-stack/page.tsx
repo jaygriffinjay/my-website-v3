@@ -110,8 +110,8 @@ export default function MyToolsTestPage() {
           </div>
 
           <div style={gridContainerStyle}>
-            <ToolCard logo="/tool-logos/TypeScript.svg" title="TypeScript" description="All in, full steam ahead" />
-            <ToolCard logo="/tool-logos/JavaScript.svg" title="JavaScript" description="The foundation" />
+            <ToolCard logo="/tool-logos/typescript.svg" title="TypeScript" description="All in, full steam ahead" />
+            <ToolCard logo="/tool-logos/javascript.svg" title="JavaScript" description="The foundation" />
             <ToolCard logo="/tool-logos/python.svg" title="Python" description="Love it, not currently using" />
             <ToolCard logo="/tool-logos/html.svg" title="HTML" description="Tim Berners is a real one" />
             <ToolCard logo="/tool-logos/css.svg" title="CSS" description="Css-in-js good" />
@@ -329,8 +329,6 @@ export default function MyToolsTestPage() {
             <ToolCard logo="/tool-logos/inkscape.svg" title="Inkscape" description="Replaced by Affinity" />
             <ToolCard logo="/tool-logos/gimp.svg" title="GIMP" description="Cheap but you get what you pay for" />
           </div>
-
-        <Divider />
 
         </div>
       </ContentWrapper>

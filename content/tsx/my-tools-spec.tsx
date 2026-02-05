@@ -54,7 +54,7 @@ const MyToolsInteractivePortfolioSpec = () => {
 
       <Heading level={2}>Current Implementation (Phase 1)</Heading>
       <Heading level={3}>Component Architecture</Heading>
-      <CodeBlock language="typescript" filename="src/app/my-tools/test/page.tsx">
+      <CodeBlock language="typescript" filename="src/app/my-stack/page.tsx">
 {`// ToolCard component (reusable)
 <ToolCard 
   logo="/tool-logos/react.svg"
