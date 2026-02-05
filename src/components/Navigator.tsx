@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useMemo, useEffect } from 'react';
+import Fuse from 'fuse.js';
 import type { RouteEntry } from '@/lib/routes';
 import { useTheme } from '@/theme/theme';
 import * as Popover from '@radix-ui/react-popover';
@@ -15,21 +16,26 @@ export default function Navigator({ routes }: NavigatorProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [open, setOpen] = useState(false);
 
+  const fuse = useMemo(() => {
+    return new Fuse(routes, {
+      keys: [
+        { name: 'title', weight: 2 },
+        { name: 'description', weight: 1 },
+        { name: 'path', weight: 1 },
+        { name: 'keywords', weight: 1.5 }
+      ],
+      threshold: 0.4,
+      includeScore: true,
+      ignoreLocation: true,
+    });
+  }, [routes]);
+
   const filteredRoutes = useMemo(() => {
     if (!searchQuery.trim()) return routes;
 
-    const query = searchQuery.toLowerCase();
-    return routes.filter((route) => {
-      const titleMatch = route.title.toLowerCase().includes(query);
-      const pathMatch = route.path.toLowerCase().includes(query);
-      const descriptionMatch = route.description?.toLowerCase().includes(query);
-      const keywordMatch = route.keywords?.some((keyword) =>
-        keyword.toLowerCase().includes(query)
-      );
-
-      return titleMatch || pathMatch || descriptionMatch || keywordMatch;
-    });
-  }, [routes, searchQuery]);
+    const results = fuse.search(searchQuery);
+    return results.map(result => result.item);
+  }, [routes, searchQuery, fuse]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +54,7 @@ export default function Navigator({ routes }: NavigatorProps) {
     width: 40,
     height: 40,
     marginRight: 4,
-    borderRadius: theme.radii.full,
+    borderRadius: theme.radii.medium,
     cursor: 'pointer',
     color: theme.colors.text,
     transition: 'background-color 0.15s ease',
@@ -59,6 +65,7 @@ export default function Navigator({ routes }: NavigatorProps) {
       outline: `2px solid ${theme.colors.primary}`,
       outlineOffset: 2,
     },
+    WebkitTapHighlightColor: 'transparent',
   };
 
   const contentStyles = {
@@ -73,6 +80,10 @@ export default function Navigator({ routes }: NavigatorProps) {
     flexDirection: 'column' as const,
     gap: '0.75rem',
     zIndex: 9999,
+    '@media (max-width: 768px)': {
+      width: '320px',
+      maxHeight: '400px',
+    },
   };
 
   const searchInputStyles = {
@@ -143,9 +154,9 @@ export default function Navigator({ routes }: NavigatorProps) {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger css={triggerStyles} aria-label="Toggle Navigator">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="10.5" cy="10.5" r="7" />
+          <line x1="15.5" y1="15.5" x2="21" y2="21" />
         </svg>
       </Popover.Trigger>
 

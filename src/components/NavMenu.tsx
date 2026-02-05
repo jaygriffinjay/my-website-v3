@@ -45,13 +45,14 @@ export function NavMenu() {
     width: 40,
     height: 40,
     marginLeft: 4,
-    borderRadius: theme.radii.full,
+    borderRadius: theme.radii.medium,
     cursor: 'pointer',
     color: theme.colors.text,
     transition: 'background-color 0.15s ease',
     '&:hover': {
       backgroundColor: theme.colors.border,
     },
+    WebkitTapHighlightColor: 'transparent',
   };
 
   const contentStyles = {
@@ -107,7 +108,7 @@ export function NavMenu() {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content css={contentStyles} side="bottom" align="start" sideOffset={20}>
+        <DropdownMenu.Content css={contentStyles} side="bottom" align="end" sideOffset={20}>
           <DropdownMenu.Item css={itemStyles} asChild>
             <Link href="/">Home</Link>
           </DropdownMenu.Item>

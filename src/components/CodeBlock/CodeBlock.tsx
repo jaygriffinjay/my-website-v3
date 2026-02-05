@@ -184,14 +184,14 @@ export function CodeBlock({ language, children, showHeader = true, filename }: C
               >
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor">
                   {isWrapped ? (
-                    // Wrapped state - lines of varying lengths
-                    <>
-                      <path d="M2 4h12M2 8h9M2 12h7" strokeWidth="1.5" strokeLinecap="round" />
-                    </>
-                  ) : (
-                    // Unwrapped state - all lines same length
+                    // Show unwrap icon - all lines same length (what you'll get when you click)
                     <>
                       <path d="M2 4h12M2 8h12M2 12h12" strokeWidth="1.5" strokeLinecap="round" />
+                    </>
+                  ) : (
+                    // Show wrap icon - lines of varying lengths (what you'll get when you click)
+                    <>
+                      <path d="M2 4h12M2 8h9M2 12h7" strokeWidth="1.5" strokeLinecap="round" />
                     </>
                   )}
                 </svg>

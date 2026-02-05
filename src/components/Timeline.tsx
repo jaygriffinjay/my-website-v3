@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
 import { css, keyframes } from '@emotion/react';
-import { Sekuya } from 'next/font/google';
-
-const sekuya = Sekuya({ 
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 interface TimelineEvent {
   year: string;
@@ -259,7 +252,7 @@ export default function Timeline() {
                         fill="hsl(210, 100%, 65%)"
                         fontSize="24"
                         fontWeight="400"
-                        fontFamily={sekuya.style.fontFamily}
+                        fontFamily="var(--font-sekuya)"
                         textAnchor="end"
                         opacity={0.8}
                       >

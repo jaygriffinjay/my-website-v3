@@ -1,73 +1,57 @@
 'use client';
 
 import Link from 'next/link';
-import { css, keyframes } from '@emotion/react';
-import { useRef, useState } from 'react';
-import { Sekuya } from 'next/font/google';
+import { css } from '@emotion/react';
 import Navigator from './Navigator';
 import { NavMenu } from './NavMenu';
 import type { RouteEntry } from '@/lib/routes';
 import { useTheme } from '@/theme/theme';
 
-const sekuya = Sekuya({ subsets: ['latin'], weight: ['400'] });
-
-const particleFloat = keyframes({
-  '0%': {
-    opacity: 1,
-    transform: 'translate(0, 0) scale(1)',
-  },
-  '100%': {
-    opacity: 0,
-    transform: 'translate(var(--tx), var(--ty)) scale(0)',
-  },
-});
-
 const navBarStyles = css({
   position: 'fixed',
-  top: '1.5rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
+  top: 0,
+  left: 0,
+  right: 0,
   width: '100%',
-  maxWidth: '640px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.15rem 0.75rem',
+  minHeight: '60px',
+  backgroundColor: '#1a1a24',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+  zIndex: 1000,
+});
+
+const containerStyles = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  gap: '0.5rem',
-  padding: '0.15rem 0.75rem',
-  backgroundColor: '#1a1a24',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '999px',
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)',
-  zIndex: 1000,
-  '@media (max-width: 768px)': {
-    top: 0,
-  },
-  // '@media (max-width: 768px)': {
-  //   gap: '0.5rem',
-  //   padding: '0.4rem 0.8rem',
-  //   bottom: '1rem',
-  // },
+  width: '100%',
+  maxWidth: '640px',
+  padding: '0 24px 0 0',
 });
 
-const titleContainerStyles = css({
-  position: 'relative',
-  overflow: 'visible',
+const rightControlsStyles = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.25rem',
+  flex: '0 0 auto',
 });
 
 const titleStyles = css({
-  fontSize: '2.5rem',
+  fontSize: '40px',
   fontWeight: 700,
   letterSpacing: '-0.02em',
   color: '#fff',
   position: 'relative',
-  padding: '0.2rem 1.5rem',
+  padding: '3px 24px',
   textDecoration: 'none',
   transition: 'color 0.3s ease',
   display: 'inline-block',
   borderRadius: '999px',
-  zIndex: 1,
   lineHeight: 1.2,
-  fontFamily: sekuya.style.fontFamily,
+  fontFamily: 'var(--font-sekuya)',
   whiteSpace: 'nowrap',
   '&:hover': {
     background: 'linear-gradient(135deg, #00d4ff 0%, #1e3a8a 100%)',
@@ -75,20 +59,9 @@ const titleStyles = css({
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
   },
-  '@media (max-width: 768px)': {
-    fontSize: 'clamp(1.25rem, 6vw, 2.5rem)',
-    padding: '0.15rem clamp(0.5rem, 2vw, 1rem)',
+  '@media (max-width: 550px)': {
+    fontSize: '28px',
   },
-});
-
-const particleStyles = css({
-  position: 'absolute',
-  width: '3px',
-  height: '3px',
-  borderRadius: '50%',
-  background: '#00d4ff',
-  pointerEvents: 'none',
-  animation: `${particleFloat} 1.5s ease-out forwards`,
 });
 
 const navigatorIconStyles = css({
@@ -120,82 +93,18 @@ interface NavBarProps {
 
 export default function NavBar({ routes }: NavBarProps) {
   const { theme } = useTheme();
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; tx: number; ty: number }>>([]);
-  const [isHovered, setIsHovered] = useState(false);
-  const isHoveredRef = useRef(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const particleIdRef = useRef(0);
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsHovered(true);
-    isHoveredRef.current = true;
-    const rect = e.currentTarget.getBoundingClientRect();
-    
-    intervalRef.current = setInterval(() => {
-      const x = Math.random() * rect.width;
-      const y = Math.random() * rect.height;
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 40;
-      const tx = Math.cos(angle) * distance;
-      const ty = Math.sin(angle) * distance;
-
-      const particle = {
-        id: particleIdRef.current++,
-        x,
-        y,
-        tx,
-        ty,
-      };
-
-      // Only add particles if still hovering
-      setParticles(prev => {
-        if (!isHoveredRef.current) return prev;
-        return [...prev, particle];
-      });
-
-      // Remove particle after animation
-      setTimeout(() => {
-        setParticles(prev => prev.filter(p => p.id !== particle.id));
-      }, 1500);
-    }, 150);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    isHoveredRef.current = false;
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    // Clear all particles immediately
-    setParticles([]);
-  };
 
   return (
     <nav css={navBarStyles}>
-      <NavMenu />
-      <div css={titleContainerStyles}>
-        <div
-          css={titleStyles}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+      <div css={containerStyles}>
+        <Link href="/" css={titleStyles}>
           Jay Griffin
+        </Link>
+        <div css={rightControlsStyles}>
+          <NavMenu />
+          <Navigator routes={routes} />
         </div>
-        {particles.map(particle => (
-          <div
-            key={particle.id}
-            css={particleStyles}
-            style={{
-              left: particle.x,
-              top: particle.y,
-              '--tx': `${particle.tx}px`,
-              '--ty': `${particle.ty}px`,
-            } as React.CSSProperties}
-          />
-        ))}
       </div>
-      <Navigator routes={routes} />
     </nav>
   );
 }

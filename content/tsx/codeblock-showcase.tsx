@@ -11,6 +11,7 @@ export const metadata: PostMeta = {
   type: 'post',
   author: ['Jay Griffin'],
   updated: [
+    '2026-02-04T00:00:00Z',
     '2026-02-03T00:00:00Z',
     '2026-02-02T00:00:00Z',
   ],
@@ -340,6 +341,30 @@ docker run -d --name my-container --restart unless-stopped -p 8080:8080 -v /host
 
 # Piped commands
 cat /var/log/syslog | grep -i error | awk '{print $1, $2, $3}' | sort | uniq -c | sort -rn | head -20`}
+      </CodeBlock>
+
+      <Paragraph>Shell script with extremely long strings (IDs, tokens, URLs):</Paragraph>
+      <CodeBlock language="bash" filename="configure-database.sh">
+        {`#!/bin/bash
+
+# Database configuration with very long identifiers
+export DATABASE_CONNECTION_STRING="postgresql://admin:SecureP@ssw0rd_WithSpecialChars!2024@prod-db-cluster-primary.us-east-1.rds.amazonaws.com:5432/production_analytics_warehouse_v2?sslmode=require&connect_timeout=10&application_name=analytics_etl_processor"
+
+# API tokens and keys
+export API_KEY="sk_live_51Abc123Def456Ghi789Jkl012Mno345Pqr678Stu901Vwx234Yz567890AbcDefGhiJklMnoPqrStuVwxYzAbCdEfGhIjKlMnOpQrStUvWxYz123456789"
+export OAUTH_TOKEN="ya29.a0AfH6SMBxyz123abc456def789ghi012jkl345mno678pqr901stu234vwx567yz8901abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_abcdefghijklmnopqrstuvwxyz"
+
+# Webhook URL with query parameters
+curl -X POST "https://api.analytics-platform.example.com/v2/webhooks/event-ingestion?tenant_id=org_2AbCdEfGhIjKlMnOpQrStUvWxYz&workspace=prod_analytics_workspace_north_america_enterprise&source=application_logs&format=json&compression=gzip&batch_size=1000" \\
+  -H "Authorization: Bearer \${API_KEY}" \\
+  -H "Content-Type: application/json" \\
+  -d '{"event_type":"user_action","timestamp":"2026-02-04T12:00:00Z"}'
+
+# Database migration with long table names
+psql \${DATABASE_CONNECTION_STRING} -c "CREATE INDEX CONCURRENTLY idx_user_activity_events_aggregated_hourly_analytics_v2_timestamp_user_id ON user_activity_events_aggregated_hourly_analytics_v2 (event_timestamp DESC, user_id) WHERE deleted_at IS NULL AND is_test_data = false;"
+
+# Redis cache key patterns
+redis-cli SET "cache:session:user:a1b2c3d4-e5f6-7890-abcd-ef1234567890:preferences:notification_settings:v3" "{\\"email\\":true,\\"push\\":false}" EX 86400`}
       </CodeBlock>
     </>
   );
